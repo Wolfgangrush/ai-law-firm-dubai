@@ -36,7 +36,7 @@ compliance_agent चेतावनी देता है: goAML (एंटी 
 
 ## लाइसेंस
 
-MIT. [MemPalace](https://github.com/mempalace/mempalace) पर आधारित। Wolfgang Rush द्वारा प्रकाशित।
+MIT. [MemPalace](https://github.com/mempalace/mempalace) पर आधारित। Wolfgang_rush द्वारा प्रकाशित।
 
 ---
 

@@ -266,7 +266,7 @@ WELCOME_BANNER = r"""
   Pick: ailawfirm-dubai init --system difc|mainland|both
 ═══════════════════════════════════════════════════════════════════
   Built on MemPalace (MIT — github.com/mempalace/mempalace)
-  Published by Wolfgang Rush · $0 forever · your data stays here
+  Published by Wolfgang_rush · $0 forever · your data stays here
   https://github.com/Wolfgangrush/ai-law-firm-dubai
 ═══════════════════════════════════════════════════════════════════
 """
@@ -295,7 +295,7 @@ def main():
 
     parser = argparse.ArgumentParser(
         description="AI Law Firm Dubai-DIFC — dual-system practice OS for UAE solo advocates. "
-        "Built on MemPalace (MIT). Published by Wolfgang Rush.",
+        "Built on MemPalace (MIT). Published by Wolfgang_rush.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
@@ -395,11 +395,20 @@ def main():
     # status
     sub.add_parser("status", help="Show what's been filed")
 
+    p_connect = sub.add_parser(
+        "connect-local",
+        help="One-command setup: install Ollama + download Qwen3 + write config (local-AI, zero cloud)",
+    )
+    p_connect.add_argument("--yes", "-y", action="store_true", help="skip confirmation prompts")
+    p_connect.add_argument("--model", help="override the recommended model (e.g. qwen3:7b)")
+
     args = parser.parse_args()
 
     if not args.command:
         parser.print_help()
         return
+
+    from .connect_local import cmd_connect_local
 
     dispatch = {
         "init": cmd_init,
@@ -409,6 +418,7 @@ def main():
         "compress": cmd_compress,
         "wake-up": cmd_wakeup,
         "status": cmd_status,
+        "connect-local": cmd_connect_local,
     }
     dispatch[args.command](args)
 

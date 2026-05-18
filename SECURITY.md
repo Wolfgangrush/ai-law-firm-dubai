@@ -6,7 +6,7 @@ If you discover a security vulnerability, please report via **GitHub Security Ad
 
 https://github.com/Wolfgangrush/ai-law-firm-dubai/security/advisories/new
 
-Or via private email: rushikesh@mahajan-rush.dev (please do NOT post vulnerabilities to public GitHub Issues).
+Or via private email: advrushikeshravindramahajan@gmail.com (please do NOT post vulnerabilities to public GitHub Issues).
 
 Please include:
 - A description of the vulnerability

@@ -15,9 +15,9 @@
 
 **For registered legal professionals only.** Intended for lawyers registered with the DIFC Courts Academy of Law (DIFC matters), lawyers registered with the UAE Ministry of Justice (onshore matters), foreign lawyers with DIFC rights of audience, in-house counsel of UAE entities, and paralegals working under their supervision. **If you are not a registered legal professional, do not use this tool to produce client-facing legal work.** Read [DISCLAIMER.md](DISCLAIMER.md) before installation. See [NO_PII_NO_DATA.md](NO_PII_NO_DATA.md) for the zero-collection architecture and [MODEL_SETUP.md](MODEL_SETUP.md) for local-AI setup.
 
-**Publisher:** [Wolfgang Rush](https://github.com/wolfgang-rush) — an Indian advocate (Bombay High Court, Nagpur Bench, India). The publisher is NOT registered in the UAE (DIFC or onshore) and offers no legal services in the UAE. This is a **software publication** under the MIT license for use by UAE-registered practitioners.
+**Publisher:** [Wolfgang_rush](https://github.com/Wolfgangrush) — an Indian advocate (Bombay High Court, Nagpur Bench, India). The publisher is NOT registered in the UAE (DIFC or onshore) and offers no legal services in the UAE. This is a **software publication** under the MIT license for use by UAE-registered practitioners.
 
-Built on [MemPalace](https://github.com/mempalace/mempalace) (MIT). Published by Wolfgang Rush. $0 forever. Your data stays on your machine.
+Built on [MemPalace](https://github.com/mempalace/mempalace) (MIT). Published by Wolfgang_rush. $0 forever. Your data stays on your machine.
 
 ## Quick Start
 

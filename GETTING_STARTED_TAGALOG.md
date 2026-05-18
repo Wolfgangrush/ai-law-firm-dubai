@@ -36,7 +36,7 @@ Ang compliance_agent ay nagbabala: goAML (anti-money laundering) · DPL (data pr
 
 ## Lisensya
 
-MIT. Itinayo sa [MemPalace](https://github.com/mempalace/mempalace). Inilathala ni Wolfgang Rush.
+MIT. Itinayo sa [MemPalace](https://github.com/mempalace/mempalace). Inilathala ni Wolfgang_rush.
 
 ---
 

@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [
-    { name = "Rushikesh Mahajan", email = "advrushikeshravindramahajan@gmail.com" },
+    { name = "Rushikesh R. Mahajan", email = "advrushikeshravindramahajan@gmail.com" },
 ]
 keywords = [
     "ai", "memory", "llm", "rag", "chromadb", "mcp",

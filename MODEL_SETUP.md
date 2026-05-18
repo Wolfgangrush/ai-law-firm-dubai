@@ -118,7 +118,7 @@ DO NOT use cloud mode for:
   ❌ Privileged communications
   ❌ Sensitive commercial / M&A / regulatory submissions
 
-The publisher (Wolfgang Rush) is NOT in this data path. You contract directly
+The publisher (Wolfgang_rush) is NOT in this data path. You contract directly
 with [VENDOR] under their terms of service.
 ```
 
@@ -127,3 +127,31 @@ For client matters: stay on Option A (local-only).
 ---
 
 *References LEGAL_EXPOSURE_PLAYBOOK §2(a) (Local-AI-Only Default pillar), §3.V4 (Data Protection — PDPL + DIFC-DPL). Playbook v0.1.*
+---
+
+## ⚠️ Third-party CLI tools and IDEs — user assumes all risk
+
+If you integrate this Software with **any third-party AI service, CLI tool, or AI-assisted IDE** — including but not limited to: **Anthropic Claude API · Claude CLI · Claude Code · OpenAI API · Codex CLI · Google Gemini API · Gemini CLI · DeepSeek API · OpenCode · Cursor · GitHub Copilot · JetBrains AI · Mistral · Cohere · HuggingFace inference · Groq · Together AI · Qwen API · or any other model provider, CLI, IDE, or AI-assisted tool** — you do so **at your own risk** and under the terms of service of that third-party tool.
+
+The publisher (Wolfgang_rush · Rushikesh R. Mahajan):
+
+- Does **NOT** recommend any specific third-party tool
+- Does **NOT** receive any compensation, referral fee, or benefit from any third-party tool's adoption
+- Does **NOT** verify any third-party tool's privacy posture, security, or compliance with your jurisdiction's law
+- Accepts **NO** responsibility for your choice of third-party tooling
+- Accepts **NO** responsibility for any data leakage, confidentiality breach, professional-conduct violation, regulatory non-compliance, or any other harm resulting from your use of third-party tools alongside this Software
+- Makes **NO** warranty that any third-party tool is suitable for legal-professional use in any jurisdiction
+
+**You are solely responsible** for:
+
+- Reading the privacy policy and terms of service of each third-party tool before connecting it
+- Ensuring compliance with all confidentiality rules, data-protection laws, sectoral regulations, and bar conduct rules that apply to your practice
+- Obtaining client consent where required before routing client data through any third-party tool
+- Verifying that the third-party tool does not retain, train on, or share your queries in ways that breach your professional obligations
+- Managing API keys, access tokens, and credentials securely (do not commit them to version control; use environment variables or a password manager)
+- Independently verifying any output produced by a third-party tool before client-facing use
+
+**This warning applies regardless of which third-party tool you choose, and regardless of any privacy claim that tool makes.** The responsibility to verify and the liability for use rest entirely with you.
+
+---
+

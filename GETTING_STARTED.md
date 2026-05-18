@@ -57,7 +57,7 @@ You can switch between DIFC and Mainland mid-session:
 
 ## What v0.1 Does NOT Do (yet)
 
-- Draft documents (coming via Wolfgang Rush plugin family)
+- Draft documents (coming via Wolfgang_rush plugin family)
 - Look up real citations against databases
 - Scrape cause lists
 - Multi-advocate billing
@@ -78,4 +78,4 @@ Read [TRANSLATION_HELP_WANTED.md](TRANSLATION_HELP_WANTED.md) to contribute.
 
 ## License
 
-MIT. Built on [MemPalace](https://github.com/mempalace/mempalace). Published by Wolfgang Rush.
+MIT. Built on [MemPalace](https://github.com/mempalace/mempalace). Published by Wolfgang_rush.

@@ -4,7 +4,7 @@
 
 ## The short version
 
-The publisher (Wolfgang Rush) operates **zero infrastructure** that touches your data. There is no server. There is no telemetry. There is no analytics. The tool runs entirely on your laptop.
+The publisher (Wolfgang_rush) operates **zero infrastructure** that touches your data. There is no server. There is no telemetry. There is no analytics. The tool runs entirely on your laptop.
 
 ## The architectural guarantee
 

@@ -27,7 +27,7 @@
 
 - [ ] Firm mode (multi-advocate, roles, billing) — v0.2+
 - [ ] Real statute text (DIFC Contract Law, UAE Civil Code, DPL, etc.) — needs source PDFs · v0.2+
-- [ ] Drafting templates — these live in Wolfgang Rush plugin family · separate repo
+- [ ] Drafting templates — these live in Wolfgang_rush plugin family · separate repo
 - [ ] Citation lookup against actual databases (DIFC Courts portal, UAE MoJ) — v0.3+
 - [ ] Live cause-list scraping (DIFC e-registry, Dubai Courts CMS/Salif) — v0.3+
 - [ ] Client billing module — v0.2+
