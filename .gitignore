@@ -1,0 +1,21 @@
+*.egg-info/
+dist/
+build/
+__pycache__/
+*.pyc
+.pytest_cache/
+mempal.yaml
+.ruff_cache/
+
+# === SENSITIVE CONTENT FIREWALL (locked 2026-05-18 · India v0.1 leak lesson) ===
+LINKEDIN_*.md
+LINKEDIN_*.docx
+*_DRAFT.md
+*_DRAFT.docx
+*_PRIVATE.md
+.DS_Store
+*.swp
+.idea/
+.vscode/
+_research/
+_GREENLIGHT_PROMPT_FOR_DEEPSEEK.md
