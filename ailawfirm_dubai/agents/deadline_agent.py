@@ -26,6 +26,8 @@ def handle(payload: str) -> dict:
     return {
         "agent": "deadline_agent",
         "status": "v0.1 — static limitation lookup",
-        "matches": matches if matches else [{"type": "unknown", "period": "specify matter type for limitation check"}],
+        "matches": matches
+        if matches
+        else [{"type": "unknown", "period": "specify matter type for limitation check"}],
         "note": "full deadline tracking + calendar integration lands v0.2+",
     }

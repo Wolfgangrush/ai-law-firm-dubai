@@ -8,7 +8,6 @@ PROVENANCE: structural — ICS format is universal, timezone is CITED:01-court-h
 """
 
 import uuid
-from datetime import datetime
 from ailawfirm_dubai.core.ontology import CalendarEvent
 
 DUBAI_TIMEZONE = "Asia/Dubai"

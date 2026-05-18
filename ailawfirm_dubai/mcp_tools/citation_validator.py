@@ -11,7 +11,6 @@ PROVENANCE: CITED:09-citation-formats.md for citation patterns.
 """
 
 import re
-from ailawfirm_dubai.core.ontology import Citation
 
 
 _DIFC_PATTERN = re.compile(

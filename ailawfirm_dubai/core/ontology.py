@@ -22,6 +22,7 @@ class System(Enum):
     """Dubai operates as 'One City, Two Systems' per ADR-005.
     PROVENANCE: CITED:01-court-hierarchy.md
     """
+
     DIFC = "DIFC (offshore common-law · English)"
     MAINLAND = "Dubai Mainland (onshore civil-law · Arabic)"
     BOTH = "Dual-system practitioner"
@@ -31,6 +32,7 @@ class MatterType(Enum):
     """Dubai legal matter types — non-exhaustive v0.1 set.
     PROVENANCE: CITED:01-court-hierarchy.md, 02-difc-court-law.md, 04-dubai-judicial-authority-law.md
     """
+
     # DIFC
     DIFC_CIVIL = "DIFC Civil Claim (CFI)"
     DIFC_SMALL_CLAIMS = "DIFC Small Claims (under USD 500k)"
@@ -51,6 +53,7 @@ class DubaiCourt(Enum):
     """Dubai court hierarchy — v0.1 stubs.
     PROVENANCE: CITED:01-court-hierarchy.md, 02-difc-court-law.md, 04-dubai-judicial-authority-law.md, 21-rent-dispute-center-tribunal.md
     """
+
     # DIFC
     DIFC_CFI = "DIFC Court of First Instance"
     DIFC_CA = "DIFC Court of Appeal"
@@ -68,6 +71,7 @@ class DubaiStatute(Enum):
     """Dubai statute registry slots — v0.1 references only.
     PROVENANCE: CITED:_research/ files; STUB for text content (v0.2+).
     """
+
     # DIFC
     DIFC_CONTRACT_LAW = "DIFC Contract Law (Amendment No. 5 of 2024)"
     DIFC_EMPLOYMENT_LAW = "DIFC Employment Law (No. 2 of 2019)"
@@ -88,10 +92,13 @@ class DubaiBarRule(Enum):
     """Dubai bar rule references — professional regulation.
     PROVENANCE: CITED:06-uae-legal-profession-law.md, 10-bar-rule-publicity-solicitation.md, 26-mandatory-cpe-clpd-requirements.md
     """
+
     UAE_LEGAL_PROFESSION_LAW = "UAE Federal Law on the Legal Profession (Mainland)"
     DIFC_ACADEMY_STANDARDS = "DIFC Academy of Law Code of Conduct"
     CLPD_REQUIREMENT = "CLPD — 16 points/year mandatory for license renewal"
-    PUBLICITY_RESTRICTION = "UAE Law on Legal Profession + DIFC Academy standards — publicity restrictions"
+    PUBLICITY_RESTRICTION = (
+        "UAE Law on Legal Profession + DIFC Academy standards — publicity restrictions"
+    )
     CONFIDENTIALITY = "Confidentiality obligations per UAE Legal Profession Law"
     CONFLICT_OF_INTEREST = "Conflict of interest rules per bar regulation"
 
@@ -101,6 +108,7 @@ class Matter:
     """A single matter (case file) — v0.1 shape only.
     PROVENANCE: STUB — full lifecycle lands v0.2+.
     """
+
     matter_id: str
     matter_type: MatterType
     system: System
@@ -121,6 +129,7 @@ class Citation:
     """A parsed Dubai legal citation — produced by dubai_citation_validator MCP tool.
     PROVENANCE: CITED:09-citation-formats.md
     """
+
     raw: str
     format: str  # 'DIFC' | 'MAINLAND' | 'UNKNOWN'
     year: Optional[int] = None
@@ -137,6 +146,7 @@ class CalendarEvent:
     PROVENANCE: STUB — ICS parsing is structural, not domain-specific.
     Timezone: Asia/Dubai (UTC+4, no DST).
     """
+
     uid: str
     summary: str
     start_time: str  # ISO 8601

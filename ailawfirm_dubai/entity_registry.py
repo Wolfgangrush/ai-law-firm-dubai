@@ -555,7 +555,11 @@ class EntityRegistry:
         Scan session text for new entity candidates.
         Returns list of newly discovered candidates for review.
         """
-        from ailawfirm_dubai.entity_detector import extract_candidates, score_entity, classify_entity
+        from ailawfirm_dubai.entity_detector import (
+            extract_candidates,
+            score_entity,
+            classify_entity,
+        )
 
         lines = text.splitlines()
         candidates = extract_candidates(text)

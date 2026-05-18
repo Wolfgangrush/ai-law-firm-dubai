@@ -53,7 +53,9 @@ def cmd_init(args):
 
 
 def cmd_mine(args):
-    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    palace_path = (
+        os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    )
 
     if args.mode == "convos":
         from .convo_miner import mine_convos
@@ -83,7 +85,9 @@ def cmd_mine(args):
 def cmd_search(args):
     from .searcher import search
 
-    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    palace_path = (
+        os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    )
     search(
         query=args.query,
         palace_path=palace_path,
@@ -97,7 +101,9 @@ def cmd_wakeup(args):
     """Show L0 (identity) + L1 (essential story) — the wake-up context."""
     from .layers import MemoryStack
 
-    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    palace_path = (
+        os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    )
     stack = MemoryStack(palace_path=palace_path)
 
     text = stack.wake_up(wing=args.wing)
@@ -132,7 +138,9 @@ def cmd_split(args):
 def cmd_status(args):
     from .miner import status
 
-    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    palace_path = (
+        os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    )
     status(palace_path=palace_path)
 
 
@@ -141,7 +149,9 @@ def cmd_compress(args):
     import chromadb
     from .dialect import Dialect
 
-    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    palace_path = (
+        os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
+    )
 
     # Load dialect (with optional entity config)
     config_path = args.config
