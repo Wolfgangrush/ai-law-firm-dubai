@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
 """
-MemPalace MCP Server — read/write palace access for Claude Code
-================================================================
-Install: claude mcp add mempalace -- python /path/to/mcp_server.py
+AI Law Firm Dubai-DIFC MCP Server — read/write palace + Dubai legal tools for Claude Code
+===========================================================================================
+Install: claude mcp add ailawfirm-dubai -- python /path/to/mcp_server.py
 
-Tools (read):
-  mempalace_status          — total drawers, wing/room breakdown
-  mempalace_list_wings      — all wings with drawer counts
-  mempalace_list_rooms      — rooms within a wing
-  mempalace_get_taxonomy    — full wing → room → count tree
-  mempalace_search          — semantic search, optional wing/room filter
-  mempalace_check_duplicate — check if content already exists before filing
+Palace tools:
+  ailawfirm_dubai_status          — total drawers, wing/room breakdown
+  ailawfirm_dubai_search          — semantic search
+  ailawfirm_dubai_add_drawer      — file verbatim content
+  ... (full MemPalace suite)
 
-Tools (write):
-  mempalace_add_drawer      — file verbatim content into a wing/room
-  mempalace_delete_drawer   — remove a drawer by ID
+Dubai legal tools (v0.1):
+  dubai_court_lookup              — 8 court stubs (4 DIFC + 4 Mainland)
+  dubai_citation_validator        — validate DIFC + Mainland citation formats
+  dubai_calendar_sync             — generate ICS events (Asia/Dubai UTC+4)
 """
 
 import sys
@@ -29,6 +28,10 @@ from .palace_graph import traverse, find_tunnels, graph_stats
 import chromadb
 
 from .knowledge_graph import KnowledgeGraph
+
+from .mcp_tools.court_lookup import dubai_court_lookup
+from .mcp_tools.citation_validator import dubai_citation_validator
+from .mcp_tools.calendar_sync import dubai_calendar_sync
 
 _kg = KnowledgeGraph()
 
@@ -685,6 +688,68 @@ TOOLS = {
         },
         "handler": tool_diary_read,
     },
+    "dubai_court_lookup": {
+        "description": "Look up a Dubai court by name (fuzzy match). Returns court type, system (DIFC or Mainland), language of proceedings, jurisdiction class, location, and applicable procedural code. v0.1 covers 8 courts: DIFC CFI, DIFC CA, DIFC Cassation, DIFC SCT, Dubai CFI, Dubai CA, Dubai Cassation, Rental Disputes Center.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "court_name": {
+                    "type": "string",
+                    "description": "Court name to look up (e.g. 'DIFC Court of Appeal', 'Rental Disputes Center', 'Dubai CFI', 'محكمة دبي')",
+                },
+            },
+            "required": ["court_name"],
+        },
+        "handler": dubai_court_lookup,
+    },
+    "dubai_citation_validator": {
+        "description": "Parse and validate a Dubai legal citation. Recognizes 2 formats: DIFC ([YYYY] DIFC CFI/CA/CASS/SCT Number) and Mainland (Case/قضية Number Year (Court)). Returns parsed fields plus system ('DIFC' or 'MAINLAND'). v0.1 validates format only; database lookup lands in v0.3+.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "citation_string": {
+                    "type": "string",
+                    "description": "Citation string (e.g. '[2024] DIFC CFI 234', 'Case 456 2023 (Dubai CFI)', 'قضية 789 2024')",
+                },
+            },
+            "required": ["citation_string"],
+        },
+        "handler": dubai_citation_validator,
+    },
+    "dubai_calendar_sync": {
+        "description": "Generate an ICS (iCalendar) event for a Dubai legal matter. Timezone locked to Asia/Dubai (UTC+4, no DST). Returns ICS string + event metadata.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "summary": {
+                    "type": "string",
+                    "description": "Event title (e.g. 'Hearing — DIFC CFI — Acme v Beta')",
+                },
+                "start_time": {
+                    "type": "string",
+                    "description": "Start time ISO 8601 (e.g. '2026-06-15T10:00:00')",
+                },
+                "end_time": {
+                    "type": "string",
+                    "description": "End time ISO 8601 (optional, defaults to start + 1h)",
+                },
+                "location": {
+                    "type": "string",
+                    "description": "Court location (optional)",
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Event notes (optional)",
+                },
+                "matter_id": {
+                    "type": "string",
+                    "description": "Associated matter ID (optional)",
+                },
+            },
+            "required": ["summary", "start_time"],
+        },
+        "handler": dubai_calendar_sync,
+    },
 }
 
 
@@ -700,7 +765,7 @@ def handle_request(request):
             "result": {
                 "protocolVersion": "2024-11-05",
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "ailawfirm_dubai", "version": "2.0.0"},
+                "serverInfo": {"name": "ailawfirm-dubai", "version": "0.1.0"},
             },
         }
     elif method == "notifications/initialized":
