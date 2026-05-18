@@ -1,0 +1,6 @@
+"""Brain — intent classification + routing for Dubai-DIFC legal domain.
+
+Intents (11): MATTER_UPDATE · CITATION_LOOKUP · COURT_QUERY · DRAFTING_NEED ·
+DEADLINE_CHECK · CLIENT_COMM · COMPLIANCE_FLAG · CALENDAR_QUERY · CALENDAR_ADD ·
+SYSTEM_SWITCH · UNKNOWN
+"""
