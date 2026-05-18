@@ -12,6 +12,8 @@ leave your laptop.
 References LEGAL_EXPOSURE_PLAYBOOK §2(a) (Local-AI-Only Default pillar).
 """
 
+from __future__ import annotations
+
 import json
 import platform
 import shutil
@@ -171,7 +173,7 @@ def cmd_connect_local(args) -> int:
     if not ollama_pull(model):
         return 1
 
-    print(f"\n[5/5] Writing config + smoke test...")
+    print("\n[5/5] Writing config + smoke test...")
     write_config(model)
     smoke_test(model)
 
