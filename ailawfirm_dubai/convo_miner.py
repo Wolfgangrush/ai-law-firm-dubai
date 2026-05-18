@@ -213,9 +213,9 @@ def get_collection(palace_path: str):
     os.makedirs(palace_path, exist_ok=True)
     client = chromadb.PersistentClient(path=palace_path)
     try:
-        return client.get_collection("mempalace_drawers")
+        return client.get_collection("ailawfirm_dubai_drawers")
     except Exception:
-        return client.create_collection("mempalace_drawers")
+        return client.create_collection("ailawfirm_dubai_drawers")
 
 
 def file_already_mined(collection, source_file: str) -> bool:
@@ -253,7 +253,7 @@ def mine_convos(
     convo_dir: str,
     palace_path: str,
     wing: str = None,
-    agent: str = "mempalace",
+    agent: str = "ailawfirm_dubai",
     limit: int = 0,
     dry_run: bool = False,
     extract_mode: str = "exchange",
@@ -387,7 +387,7 @@ def mine_convos(
         print("\n  By room:")
         for room, count in sorted(room_counts.items(), key=lambda x: x[1], reverse=True):
             print(f"    {room:20} {count} files")
-    print('\n  Next: mempalace search "what you\'re looking for"')
+    print('\n  Next: ailawfirm-dubai search "what you\'re looking for"')
     print(f"{'=' * 55}\n")
 
 
@@ -395,6 +395,6 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Usage: python convo_miner.py <convo_dir> [--palace PATH] [--limit N] [--dry-run]")
         sys.exit(1)
-    from .config import MempalaceConfig
+    from .config import AILawFirmDubaiConfig
 
-    mine_convos(sys.argv[1], palace_path=MempalaceConfig().palace_path)
+    mine_convos(sys.argv[1], palace_path=AILawFirmDubaiConfig().palace_path)

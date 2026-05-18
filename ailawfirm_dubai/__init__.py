@@ -1,6 +1,6 @@
-"""MemPalace — Give your AI a memory. No API key required."""
+"""AI Law Firm — Dubai-DIFC · Dual-system practice OS for Dubai solo advocates. Built on MemPalace."""
 
-__version__ = "2.0.0"
+__version__ = "0.1.0"
 
 from .cli import main
 

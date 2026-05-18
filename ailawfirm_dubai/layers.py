@@ -13,7 +13,7 @@ Load only what you need, when you need it.
 Wake-up cost: ~600-900 tokens (L0+L1). Leaves 95%+ of context free.
 
 Reads directly from ChromaDB (mempalace_drawers)
-and ~/.mempalace/identity.txt.
+and ~/.ailawfirm-dubai/identity.txt.
 """
 
 import os
@@ -23,7 +23,7 @@ from collections import defaultdict
 
 import chromadb
 
-from .config import MempalaceConfig
+from .config import AILawFirmDubaiConfig
 
 
 # ---------------------------------------------------------------------------
@@ -34,7 +34,7 @@ from .config import MempalaceConfig
 class Layer0:
     """
     ~100 tokens. Always loaded.
-    Reads from ~/.mempalace/identity.txt — a plain-text file the user writes.
+    Reads from ~/.ailawfirm-dubai/identity.txt — a plain-text file the user writes.
 
     Example identity.txt:
         I am Atlas, a personal AI assistant for Alice.
@@ -45,7 +45,7 @@ class Layer0:
 
     def __init__(self, identity_path: str = None):
         if identity_path is None:
-            identity_path = os.path.expanduser("~/.mempalace/identity.txt")
+            identity_path = os.path.expanduser("~/.ailawfirm-dubai/identity.txt")
         self.path = identity_path
         self._text = None
 
@@ -59,7 +59,7 @@ class Layer0:
                 self._text = f.read().strip()
         else:
             self._text = (
-                "## L0 — IDENTITY\nNo identity configured. Create ~/.mempalace/identity.txt"
+                "## L0 — IDENTITY\nNo identity configured. Create ~/.ailawfirm-dubai/identity.txt"
             )
 
         return self._text
@@ -84,7 +84,7 @@ class Layer1:
     MAX_CHARS = 3200  # hard cap on total L1 text (~800 tokens)
 
     def __init__(self, palace_path: str = None, wing: str = None):
-        cfg = MempalaceConfig()
+        cfg = AILawFirmDubaiConfig()
         self.palace_path = palace_path or cfg.palace_path
         self.wing = wing
 
@@ -92,9 +92,9 @@ class Layer1:
         """Pull top drawers from ChromaDB and format as compact L1 text."""
         try:
             client = chromadb.PersistentClient(path=self.palace_path)
-            col = client.get_collection("mempalace_drawers")
+            col = client.get_collection("ailawfirm_dubai_drawers")
         except Exception:
-            return "## L1 — No palace found. Run: mempalace mine <dir>"
+            return "## L1 — No palace found. Run: ailawfirm-dubai mine <dir>"
 
         # Fetch all drawers (with optional wing filter)
         kwargs = {"include": ["documents", "metadatas"]}
@@ -181,14 +181,14 @@ class Layer2:
     """
 
     def __init__(self, palace_path: str = None):
-        cfg = MempalaceConfig()
+        cfg = AILawFirmDubaiConfig()
         self.palace_path = palace_path or cfg.palace_path
 
     def retrieve(self, wing: str = None, room: str = None, n_results: int = 10) -> str:
         """Retrieve drawers filtered by wing and/or room."""
         try:
             client = chromadb.PersistentClient(path=self.palace_path)
-            col = client.get_collection("mempalace_drawers")
+            col = client.get_collection("ailawfirm_dubai_drawers")
         except Exception:
             return "No palace found."
 
@@ -245,14 +245,14 @@ class Layer3:
     """
 
     def __init__(self, palace_path: str = None):
-        cfg = MempalaceConfig()
+        cfg = AILawFirmDubaiConfig()
         self.palace_path = palace_path or cfg.palace_path
 
     def search(self, query: str, wing: str = None, room: str = None, n_results: int = 5) -> str:
         """Semantic search, returns compact result text."""
         try:
             client = chromadb.PersistentClient(path=self.palace_path)
-            col = client.get_collection("mempalace_drawers")
+            col = client.get_collection("ailawfirm_dubai_drawers")
         except Exception:
             return "No palace found."
 
@@ -308,7 +308,7 @@ class Layer3:
         """Return raw dicts instead of formatted text."""
         try:
             client = chromadb.PersistentClient(path=self.palace_path)
-            col = client.get_collection("mempalace_drawers")
+            col = client.get_collection("ailawfirm_dubai_drawers")
         except Exception:
             return []
 
@@ -368,9 +368,9 @@ class MemoryStack:
     """
 
     def __init__(self, palace_path: str = None, identity_path: str = None):
-        cfg = MempalaceConfig()
+        cfg = AILawFirmDubaiConfig()
         self.palace_path = palace_path or cfg.palace_path
-        self.identity_path = identity_path or os.path.expanduser("~/.mempalace/identity.txt")
+        self.identity_path = identity_path or os.path.expanduser("~/.ailawfirm-dubai/identity.txt")
 
         self.l0 = Layer0(self.identity_path)
         self.l1 = Layer1(self.palace_path)
@@ -429,7 +429,7 @@ class MemoryStack:
         # Count drawers
         try:
             client = chromadb.PersistentClient(path=self.palace_path)
-            col = client.get_collection("mempalace_drawers")
+            col = client.get_collection("ailawfirm_dubai_drawers")
             count = col.count()
             result["total_drawers"] = count
         except Exception:

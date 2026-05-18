@@ -23,7 +23,7 @@ import logging
 import hashlib
 from datetime import datetime
 
-from .config import MempalaceConfig
+from .config import AILawFirmDubaiConfig
 from .searcher import search_memories
 from .palace_graph import traverse, find_tunnels, graph_stats
 import chromadb
@@ -33,9 +33,9 @@ from .knowledge_graph import KnowledgeGraph
 _kg = KnowledgeGraph()
 
 logging.basicConfig(level=logging.INFO, format="%(message)s", stream=sys.stderr)
-logger = logging.getLogger("mempalace_mcp")
+logger = logging.getLogger("ailawfirm_dubai_mcp")
 
-_config = MempalaceConfig()
+_config = AILawFirmDubaiConfig()
 
 
 def _get_collection(create=False):
@@ -53,7 +53,7 @@ def _no_palace():
     return {
         "error": "No palace found",
         "palace_path": _config.palace_path,
-        "hint": "Run: mempalace init <dir> && mempalace mine <dir>",
+        "hint": "Run: ailawfirm-dubai init <dir> && ailawfirm-dubai mine <dir>",
     }
 
 
@@ -439,17 +439,17 @@ def tool_diary_read(agent_name: str, last_n: int = 10):
 # ==================== MCP PROTOCOL ====================
 
 TOOLS = {
-    "mempalace_status": {
+    "ailawfirm_dubai_status": {
         "description": "Palace overview — total drawers, wing and room counts",
         "input_schema": {"type": "object", "properties": {}},
         "handler": tool_status,
     },
-    "mempalace_list_wings": {
+    "ailawfirm_dubai_list_wings": {
         "description": "List all wings with drawer counts",
         "input_schema": {"type": "object", "properties": {}},
         "handler": tool_list_wings,
     },
-    "mempalace_list_rooms": {
+    "ailawfirm_dubai_list_rooms": {
         "description": "List rooms within a wing (or all rooms if no wing given)",
         "input_schema": {
             "type": "object",
@@ -459,17 +459,17 @@ TOOLS = {
         },
         "handler": tool_list_rooms,
     },
-    "mempalace_get_taxonomy": {
+    "ailawfirm_dubai_get_taxonomy": {
         "description": "Full taxonomy: wing → room → drawer count",
         "input_schema": {"type": "object", "properties": {}},
         "handler": tool_get_taxonomy,
     },
-    "mempalace_get_aaak_spec": {
+    "ailawfirm_dubai_get_aaak_spec": {
         "description": "Get the AAAK dialect specification — the compressed memory format MemPalace uses. Call this if you need to read or write AAAK-compressed memories.",
         "input_schema": {"type": "object", "properties": {}},
         "handler": tool_get_aaak_spec,
     },
-    "mempalace_kg_query": {
+    "ailawfirm_dubai_kg_query": {
         "description": "Query the knowledge graph for an entity's relationships. Returns typed facts with temporal validity. E.g. 'Max' → child_of Alice, loves chess, does swimming. Filter by date with as_of to see what was true at a point in time.",
         "input_schema": {
             "type": "object",
@@ -491,7 +491,7 @@ TOOLS = {
         },
         "handler": tool_kg_query,
     },
-    "mempalace_kg_add": {
+    "ailawfirm_dubai_kg_add": {
         "description": "Add a fact to the knowledge graph. Subject → predicate → object with optional time window. E.g. ('Max', 'started_school', 'Year 7', valid_from='2026-09-01').",
         "input_schema": {
             "type": "object",
@@ -515,7 +515,7 @@ TOOLS = {
         },
         "handler": tool_kg_add,
     },
-    "mempalace_kg_invalidate": {
+    "ailawfirm_dubai_kg_invalidate": {
         "description": "Mark a fact as no longer true. E.g. ankle injury resolved, job ended, moved house.",
         "input_schema": {
             "type": "object",
@@ -532,7 +532,7 @@ TOOLS = {
         },
         "handler": tool_kg_invalidate,
     },
-    "mempalace_kg_timeline": {
+    "ailawfirm_dubai_kg_timeline": {
         "description": "Chronological timeline of facts. Shows the story of an entity (or everything) in order.",
         "input_schema": {
             "type": "object",
@@ -545,12 +545,12 @@ TOOLS = {
         },
         "handler": tool_kg_timeline,
     },
-    "mempalace_kg_stats": {
+    "ailawfirm_dubai_kg_stats": {
         "description": "Knowledge graph overview: entities, triples, current vs expired facts, relationship types.",
         "input_schema": {"type": "object", "properties": {}},
         "handler": tool_kg_stats,
     },
-    "mempalace_traverse": {
+    "ailawfirm_dubai_traverse": {
         "description": "Walk the palace graph from a room. Shows connected ideas across wings — the tunnels. Like following a thread through the palace: start at 'chromadb-setup' in wing_code, discover it connects to wing_myproject (planning) and wing_user (feelings about it).",
         "input_schema": {
             "type": "object",
@@ -568,7 +568,7 @@ TOOLS = {
         },
         "handler": tool_traverse_graph,
     },
-    "mempalace_find_tunnels": {
+    "ailawfirm_dubai_find_tunnels": {
         "description": "Find rooms that bridge two wings — the hallways connecting different domains. E.g. what topics connect wing_code to wing_team?",
         "input_schema": {
             "type": "object",
@@ -579,12 +579,12 @@ TOOLS = {
         },
         "handler": tool_find_tunnels,
     },
-    "mempalace_graph_stats": {
+    "ailawfirm_dubai_graph_stats": {
         "description": "Palace graph overview: total rooms, tunnel connections, edges between wings.",
         "input_schema": {"type": "object", "properties": {}},
         "handler": tool_graph_stats,
     },
-    "mempalace_search": {
+    "ailawfirm_dubai_search": {
         "description": "Semantic search. Returns verbatim drawer content with similarity scores.",
         "input_schema": {
             "type": "object",
@@ -598,7 +598,7 @@ TOOLS = {
         },
         "handler": tool_search,
     },
-    "mempalace_check_duplicate": {
+    "ailawfirm_dubai_check_duplicate": {
         "description": "Check if content already exists in the palace before filing",
         "input_schema": {
             "type": "object",
@@ -613,7 +613,7 @@ TOOLS = {
         },
         "handler": tool_check_duplicate,
     },
-    "mempalace_add_drawer": {
+    "ailawfirm_dubai_add_drawer": {
         "description": "File verbatim content into the palace. Checks for duplicates first.",
         "input_schema": {
             "type": "object",
@@ -634,7 +634,7 @@ TOOLS = {
         },
         "handler": tool_add_drawer,
     },
-    "mempalace_delete_drawer": {
+    "ailawfirm_dubai_delete_drawer": {
         "description": "Delete a drawer by ID. Irreversible.",
         "input_schema": {
             "type": "object",
@@ -645,7 +645,7 @@ TOOLS = {
         },
         "handler": tool_delete_drawer,
     },
-    "mempalace_diary_write": {
+    "ailawfirm_dubai_diary_write": {
         "description": "Write to your personal agent diary in AAAK format. Your observations, thoughts, what you worked on, what matters. Each agent has their own diary with full history. Write in AAAK for compression — e.g. 'SESSION:2026-04-04|built.palace.graph+diary.tools|ALC.req:agent.diaries.in.aaak|★★★'. Use entity codes from the AAAK spec.",
         "input_schema": {
             "type": "object",
@@ -667,7 +667,7 @@ TOOLS = {
         },
         "handler": tool_diary_write,
     },
-    "mempalace_diary_read": {
+    "ailawfirm_dubai_diary_read": {
         "description": "Read your recent diary entries (in AAAK). See what past versions of yourself recorded — your journal across sessions.",
         "input_schema": {
             "type": "object",
@@ -700,7 +700,7 @@ def handle_request(request):
             "result": {
                 "protocolVersion": "2024-11-05",
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "mempalace", "version": "2.0.0"},
+                "serverInfo": {"name": "ailawfirm_dubai", "version": "2.0.0"},
             },
         }
     elif method == "notifications/initialized":

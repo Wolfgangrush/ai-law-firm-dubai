@@ -1,4 +1,4 @@
-"""Allow running as: python -m mempalace"""
+"""Allow running as: python -m ailawfirm_dubai"""
 
 from .cli import main
 

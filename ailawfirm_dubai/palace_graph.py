@@ -16,13 +16,13 @@ No external graph DB needed — built from ChromaDB metadata.
 """
 
 from collections import defaultdict, Counter
-from .config import MempalaceConfig
+from .config import AILawFirmDubaiConfig
 
 import chromadb
 
 
 def _get_collection(config=None):
-    config = config or MempalaceConfig()
+    config = config or AILawFirmDubaiConfig()
     try:
         client = chromadb.PersistentClient(path=config.palace_path)
         return client.get_collection(config.collection_name)

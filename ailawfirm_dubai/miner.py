@@ -2,7 +2,7 @@
 """
 miner.py — Files everything into the palace.
 
-Reads mempalace.yaml from the project directory to know the wing + rooms.
+Reads ailawfirm_dubai.yaml from the project directory to know the wing + rooms.
 Routes each file to the right room based on content.
 Stores verbatim chunks as drawers. No summaries. Ever.
 """
@@ -64,18 +64,18 @@ MIN_CHUNK_SIZE = 50  # skip tiny chunks
 
 
 def load_config(project_dir: str) -> dict:
-    """Load mempalace.yaml from project directory (falls back to mempal.yaml)."""
+    """Load ailawfirm_dubai.yaml from project directory (falls back to ailawfirm_dubai.yaml)."""
     import yaml
 
-    config_path = Path(project_dir).expanduser().resolve() / "mempalace.yaml"
+    config_path = Path(project_dir).expanduser().resolve() / "ailawfirm_dubai.yaml"
     if not config_path.exists():
         # Fallback to legacy name
-        legacy_path = Path(project_dir).expanduser().resolve() / "mempal.yaml"
+        legacy_path = Path(project_dir).expanduser().resolve() / "ailawfirm_dubai.yaml"
         if legacy_path.exists():
             config_path = legacy_path
         else:
-            print(f"ERROR: No mempalace.yaml found in {project_dir}")
-            print(f"Run: mempalace init {project_dir}")
+            print(f"ERROR: No ailawfirm_dubai.yaml found in {project_dir}")
+            print(f"Run: ailawfirm-dubai init {project_dir}")
             sys.exit(1)
     with open(config_path) as f:
         return yaml.safe_load(f)
@@ -184,9 +184,9 @@ def get_collection(palace_path: str):
     os.makedirs(palace_path, exist_ok=True)
     client = chromadb.PersistentClient(path=palace_path)
     try:
-        return client.get_collection("mempalace_drawers")
+        return client.get_collection("ailawfirm_dubai_drawers")
     except Exception:
-        return client.create_collection("mempalace_drawers")
+        return client.create_collection("ailawfirm_dubai_drawers")
 
 
 def file_already_mined(collection, source_file: str) -> bool:
@@ -295,9 +295,9 @@ def scan_project(project_dir: str) -> list:
             if filepath.suffix.lower() in READABLE_EXTENSIONS:
                 # Skip config files
                 if filename in (
-                    "mempalace.yaml",
-                    "mempalace.yml",
-                    "mempal.yaml",
+                    "ailawfirm_dubai.yaml",
+                    "ailawfirm_dubai.yml",
+                    "ailawfirm_dubai.yaml",
                     "mempal.yml",
                     ".gitignore",
                     "package-lock.json",
@@ -316,7 +316,7 @@ def mine(
     project_dir: str,
     palace_path: str,
     wing_override: str = None,
-    agent: str = "mempalace",
+    agent: str = "ailawfirm_dubai",
     limit: int = 0,
     dry_run: bool = False,
 ):
@@ -379,7 +379,7 @@ def mine(
     print("\n  By room:")
     for room, count in sorted(room_counts.items(), key=lambda x: x[1], reverse=True):
         print(f"    {room:20} {count} files")
-    print('\n  Next: mempalace search "what you\'re looking for"')
+    print('\n  Next: ailawfirm-dubai search "what you\'re looking for"')
     print(f"{'=' * 55}\n")
 
 
@@ -392,10 +392,10 @@ def status(palace_path: str):
     """Show what's been filed in the palace."""
     try:
         client = chromadb.PersistentClient(path=palace_path)
-        col = client.get_collection("mempalace_drawers")
+        col = client.get_collection("ailawfirm_dubai_drawers")
     except Exception:
         print(f"\n  No palace found at {palace_path}")
-        print("  Run: mempalace init <dir> then mempalace mine <dir>")
+        print("  Run: ailawfirm-dubai init <dir> then ailawfirm-dubai mine <dir>")
         return
 
     # Count by wing and room

@@ -13,7 +13,7 @@ def test_project_mining():
     with open(os.path.join(tmpdir, "backend", "app.py"), "w") as f:
         f.write("def main():\n    print('hello world')\n" * 20)
     # Create config
-    with open(os.path.join(tmpdir, "mempalace.yaml"), "w") as f:
+    with open(os.path.join(tmpdir, "ailawfirm_dubai.yaml"), "w") as f:
         yaml.dump(
             {
                 "wing": "test_project",

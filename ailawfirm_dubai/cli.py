@@ -1,29 +1,18 @@
 #!/usr/bin/env python3
 """
-MemPalace — Give your AI a memory. No API key required.
-
-Two ways to ingest:
-  Projects:      mempalace mine ~/projects/my_app          (code, docs, notes)
-  Conversations: mempalace mine ~/chats/ --mode convos     (Claude, ChatGPT, Slack)
-
-Same palace. Same search. Different ingest strategies.
+AI Law Firm — Dubai-DIFC · Solo Edition · v0.1
+================================================
+Dual-system practice OS: DIFC (offshore common-law English) + Dubai Mainland (onshore civil-law Arabic)
+5-language Gulf support: English · العربية · اردو · हिन्दी · Tagalog
 
 Commands:
-    mempalace init <dir>                  Detect rooms from folder structure
-    mempalace split <dir>                 Split concatenated mega-files into per-session files
-    mempalace mine <dir>                  Mine project files (default)
-    mempalace mine <dir> --mode convos    Mine conversation exports
-    mempalace search "query"              Find anything, exact words
-    mempalace wake-up                     Show L0 + L1 wake-up context
-    mempalace wake-up --wing my_app       Wake-up for a specific project
-    mempalace status                      Show what's been filed
-
-Examples:
-    mempalace init ~/projects/my_app
-    mempalace mine ~/projects/my_app
-    mempalace mine ~/chats/claude-sessions --mode convos
-    mempalace search "why did we switch to GraphQL"
-    mempalace search "pricing discussion" --wing my_app --room costs
+    ailawfirm-dubai init <dir> --system difc|mainland|both
+    ailawfirm-dubai mine <dir>
+    ailawfirm-dubai search "query"
+    ailawfirm-dubai wake-up
+    ailawfirm-dubai status
+    ailawfirm-dubai split <dir>
+    ailawfirm-dubai compress
 """
 
 import os
@@ -31,7 +20,7 @@ import sys
 import argparse
 from pathlib import Path
 
-from .config import MempalaceConfig
+from .config import AILawFirmDubaiConfig
 
 
 def cmd_init(args):
@@ -60,11 +49,11 @@ def cmd_init(args):
 
     # Pass 2: detect rooms from folder structure
     detect_rooms_local(project_dir=args.dir)
-    MempalaceConfig().init()
+    AILawFirmDubaiConfig().init()
 
 
 def cmd_mine(args):
-    palace_path = os.path.expanduser(args.palace) if args.palace else MempalaceConfig().palace_path
+    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
 
     if args.mode == "convos":
         from .convo_miner import mine_convos
@@ -94,7 +83,7 @@ def cmd_mine(args):
 def cmd_search(args):
     from .searcher import search
 
-    palace_path = os.path.expanduser(args.palace) if args.palace else MempalaceConfig().palace_path
+    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
     search(
         query=args.query,
         palace_path=palace_path,
@@ -108,7 +97,7 @@ def cmd_wakeup(args):
     """Show L0 (identity) + L1 (essential story) — the wake-up context."""
     from .layers import MemoryStack
 
-    palace_path = os.path.expanduser(args.palace) if args.palace else MempalaceConfig().palace_path
+    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
     stack = MemoryStack(palace_path=palace_path)
 
     text = stack.wake_up(wing=args.wing)
@@ -133,7 +122,7 @@ def cmd_split(args):
         argv += ["--min-sessions", str(args.min_sessions)]
 
     old_argv = sys.argv
-    sys.argv = ["mempalace split"] + argv
+    sys.argv = ["ailawfirm_dubai split"] + argv
     try:
         split_main()
     finally:
@@ -143,7 +132,7 @@ def cmd_split(args):
 def cmd_status(args):
     from .miner import status
 
-    palace_path = os.path.expanduser(args.palace) if args.palace else MempalaceConfig().palace_path
+    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
     status(palace_path=palace_path)
 
 
@@ -152,7 +141,7 @@ def cmd_compress(args):
     import chromadb
     from .dialect import Dialect
 
-    palace_path = os.path.expanduser(args.palace) if args.palace else MempalaceConfig().palace_path
+    palace_path = os.path.expanduser(args.palace) if args.palace else AILawFirmDubaiConfig().palace_path
 
     # Load dialect (with optional entity config)
     config_path = args.config
@@ -171,10 +160,10 @@ def cmd_compress(args):
     # Connect to palace
     try:
         client = chromadb.PersistentClient(path=palace_path)
-        col = client.get_collection("mempalace_drawers")
+        col = client.get_collection("ailawfirm_dubai_drawers")
     except Exception:
         print(f"\n  No palace found at {palace_path}")
-        print("  Run: mempalace init <dir> then mempalace mine <dir>")
+        print("  Run: ailawfirm-dubai init <dir> then ailawfirm-dubai mine <dir>")
         sys.exit(1)
 
     # Query drawers in the wing
@@ -231,7 +220,7 @@ def cmd_compress(args):
     # Store compressed versions (unless dry-run)
     if not args.dry_run:
         try:
-            comp_col = client.get_or_create_collection("mempalace_compressed")
+            comp_col = client.get_or_create_collection("ailawfirm_dubai_compressed")
             for doc_id, compressed, meta, stats in compressed_entries:
                 comp_meta = dict(meta)
                 comp_meta["compression_ratio"] = round(stats["ratio"], 1)
@@ -257,16 +246,53 @@ def cmd_compress(args):
         print("  (dry run -- nothing stored)")
 
 
+WELCOME_BANNER = r"""
+═══════════════════════════════════════════════════════════════════
+  AI Law Firm — Dubai-DIFC · Solo Edition · v0.1
+
+  🙏 Welcome · أهلاً وسهلاً · خوش آمدید · स्वागत · Mabuhay
+═══════════════════════════════════════════════════════════════════
+  DIFC (offshore common-law) + Dubai Mainland (onshore civil-law)
+  Pick: ailawfirm-dubai init --system difc|mainland|both
+═══════════════════════════════════════════════════════════════════
+  Built on MemPalace (MIT — github.com/mempalace/mempalace)
+  Published by Wolfgang Rush · $0 forever · your data stays here
+  https://github.com/Wolfgangrush/ai-law-firm-dubai
+═══════════════════════════════════════════════════════════════════
+"""
+
+
+def _print_welcome():
+    """Print welcome banner. Called when running with no arguments."""
+    print(WELCOME_BANNER)
+    print(
+        "  This is YOUR practice OS for Dubai. No cloud. No subscription.\n"
+        "  One City, Two Systems — DIFC + Mainland in one tool.\n"
+    )
+    print("  Quick start:")
+    print("    ailawfirm-dubai init --system difc <your-matters-dir>")
+    print("    ailawfirm-dubai mine <your-matters-dir>")
+    print('    ailawfirm-dubai search "<query>"')
+    print()
+    print("  Read GETTING_STARTED.md (also العربية, اردو, हिन्दी, Tagalog)")
+    print("  in 5 languages for Gulf legal community.\n")
+
+
 def main():
+    if len(sys.argv) == 1:
+        _print_welcome()
+        sys.exit(0)
+
     parser = argparse.ArgumentParser(
-        description="MemPalace — Give your AI a memory. No API key required.",
+        description="AI Law Firm Dubai-DIFC — dual-system practice OS for UAE solo advocates. "
+        "Built on MemPalace (MIT). Published by Wolfgang Rush.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
     parser.add_argument(
         "--palace",
         default=None,
-        help="Where the palace lives (default: from ~/.mempalace/config.json or ~/.mempalace/palace)",
+        help="Where the palace lives (default: from ~/.ailawfirm-dubai/config.json or ~/.ailawfirm-dubai/palace)",
     )
 
     sub = parser.add_subparsers(dest="command")
@@ -274,6 +300,12 @@ def main():
     # init
     p_init = sub.add_parser("init", help="Detect rooms from your folder structure")
     p_init.add_argument("dir", help="Project directory to set up")
+    p_init.add_argument(
+        "--system",
+        choices=["difc", "mainland", "both"],
+        default="both",
+        help="Legal system: difc (offshore common-law), mainland (onshore civil-law), both (default)",
+    )
     p_init.add_argument(
         "--yes", action="store_true", help="Auto-accept all detected entities (non-interactive)"
     )
@@ -290,8 +322,8 @@ def main():
     p_mine.add_argument("--wing", default=None, help="Wing name (default: directory name)")
     p_mine.add_argument(
         "--agent",
-        default="mempalace",
-        help="Your name — recorded on every drawer (default: mempalace)",
+        default="ailawfirm-dubai",
+        help="Your name — recorded on every drawer (default: ailawfirm-dubai)",
     )
     p_mine.add_argument("--limit", type=int, default=0, help="Max files to process (0 = all)")
     p_mine.add_argument(
