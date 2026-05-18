@@ -41,7 +41,7 @@
 
 ## Verification path
 
-v0.1 is verified locally by Rushikesh Mahajan (RSH) using `claude-real` (Opus 4.7) running the `/lawtech-code-review` skill against this BUILD_PLAN. Dual-system code paths (--system difc AND --system mainland), Arabic RTL rendering, and compliance_agent goAML/CLPD/DPL firewall are spot-checked.
+v0.1 is verified by the publisher (Rushikesh R. Mahajan) before any GitHub publish.
 
 ## Falsification
 
