@@ -146,9 +146,13 @@ Copy this folder to a USB drive · OneDrive · iCloud Drive · Dropbox = complet
 
 ## 🛤️ Roadmap (honest)
 
+> 🙏 **Honest note on timelines:** Solo-author OSS · ships as time permits · v0.2 / v0.3 / v0.4+ targets are indicative, not committed dates. Open an issue if a specific feature on a specific timeline matters to your work.
+
+
+
 - **v0.1.0** *(now)* — bootstrap: dual-system ontology · 11-intent brain (with SYSTEM_SWITCH) · 7 specialist agents (4 live · 3 stubs) · 3 working MCP tools (court · citation · calendar) · 5-language onboarding (English · Arabic · Urdu · Hindi · Tagalog) · connect-local one-command CLI · LEGAL_EXPOSURE_PLAYBOOK v0.1 compliance
-- **v0.2** *(weeks)* — DIFC statute text (Contract Law · Employment Law · DPL · Companies Law · Insolvency Law) · Mainland statute text (UAE Civil Code · Commercial Code · Penal Code · Federal Data Protection 45/2021) · Pseudonymisation Gateway for safe cloud-mode · matter dashboard · goAML reporting helper
-- **v0.3** *(months)* — **firm mode** for multi-lawyer dual-system practices · role/permission · conflict-check across systems · trust-account / client-account compliance · Decree 19 of 2016 shared-jurisdiction handling
+- **v0.2** *(next milestone)* — DIFC statute text (Contract Law · Employment Law · DPL · Companies Law · Insolvency Law) · Mainland statute text (UAE Civil Code · Commercial Code · Penal Code · Federal Data Protection 45/2021) · Pseudonymisation Gateway for safe cloud-mode · matter dashboard · goAML reporting helper
+- **v0.3** *(following milestone)* — **firm mode** for multi-lawyer dual-system practices · role/permission · conflict-check across systems · trust-account / client-account compliance · Decree 19 of 2016 shared-jurisdiction handling
 - **v0.4+** — DIFC Courts website / UAE Federal Legal Gazette cross-reference · ADGM bridge (Abu Dhabi) · Apple EventKit native · CalDAV bidirectional sync · deeper Cassation precedent search
 
 Six sister jurisdictions on the same architecture: 🇮🇳 India · 🇸🇬 Singapore · 🇬🇧 UK · 🇦🇺 Australia · 🇪🇺 EU · 🇺🇸 USA — each as its own MIT-licensed repo.
