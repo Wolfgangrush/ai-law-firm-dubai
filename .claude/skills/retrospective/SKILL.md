@@ -12,7 +12,9 @@ Saves what the Dubai-DIFC AI Law Firm learned this session. Runs at session end.
 
 ### Pass 1 — AAAK codes + MemPalace paths
 ```bash
-grep -rniE '\b(CMA|MRO|CK|VJP|SAM|GAR|GAG|RKS|RSH)\b' --include="*.md" --include="*.json" --include="*.txt" . 2>/dev/null
+# Detect any 2-5 letter all-caps token (potential internal matter shorthand)
+grep -rniE '\b[A-Z]{2,5}\b' --include="*.md" --include="*.json" --include="*.txt" . 2>/dev/null \
+  | grep -vE '\b(USA|UK|EU|UAE|HC|SC|API|JSON|MIT|MCP|CSV|PDF|XML|HTML|HTTP|URL|ABN|TFN|GST|VAT|CEO|CFO|CIO|MD|QC|SC|JD|LLM|LLB|BSc|MBA|GDP|GDPR|CCPA|DPDP|AI|ML|NLP|CLI|IDE|SDK|README|CI|CD|PR|RFC|ETA|EOD|TBD|FYI|NB|AM|PM)\b'
 grep -rni 'mempalace\|\.mempalace\|--mempalace' --include="*.md" --include="*.json" . 2>/dev/null
 ```
 **Expected: zero hits.** Any hit = STOP. Do not save. Flag for manual review.
@@ -68,7 +70,7 @@ Save to `.ailawfirm-dubai/sessions/` with timestamp. Format:
 
 ## Anti-Pollution Rules (DO NOT BREAK)
 - Never reference `~/.mempalace/` or any mempalace path
-- Never use AAAK entity codes (CMA, MRO, CK, VJP, SAM, GAR, GAG, RKS, RSH, etc.)
+- Never use internal entity codes, matter shorthand, or non-jurisdiction-context identifiers
 - Never reference lawtech-arc architecture
 - Never reference Wolfgang Rush personal builds or personal brand
 - The publisher credit line in README.md is the sole exception — it is public-facing attribution, not a leak

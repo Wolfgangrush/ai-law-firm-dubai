@@ -12,7 +12,9 @@ Loads the Dubai-DIFC AI Law Firm's current state at session start. Displays read
 
 ### Pass 1 — AAAK codes + MemPalace paths
 ```bash
-grep -rniE '\b(CMA|MRO|CK|VJP|SAM|GAR|GAG|RKS|RSH)\b' --include="*.md" --include="*.json" --include="*.txt" . 2>/dev/null
+# Detect any 2-5 letter all-caps token (potential internal matter shorthand)
+grep -rniE '\b[A-Z]{2,5}\b' --include="*.md" --include="*.json" --include="*.txt" . 2>/dev/null \
+  | grep -vE '\b(USA|UK|EU|UAE|HC|SC|API|JSON|MIT|MCP|CSV|PDF|XML|HTML|HTTP|URL|ABN|TFN|GST|VAT|CEO|CFO|CIO|MD|QC|SC|JD|LLM|LLB|BSc|MBA|GDP|GDPR|CCPA|DPDP|AI|ML|NLP|CLI|IDE|SDK|README|CI|CD|PR|RFC|ETA|EOD|TBD|FYI|NB|AM|PM)\b'
 grep -rni 'mempalace\|\.mempalace\|--mempalace' --include="*.md" --include="*.json" . 2>/dev/null
 ```
 **Expected: zero hits.** Any hit = flag immediately. Do not proceed silently.
