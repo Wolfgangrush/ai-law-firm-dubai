@@ -39,6 +39,15 @@ Maps every domain claim in the codebase to its source. Prevents silent introduct
 | DIFC Companies Law | CITED:33-uae-commercial-companies-law.md |
 | DIFC Insolvency Law | CITED:34-difc-insolvency-law.md |
 | Rules of the DIFC Courts (RDC) | CITED:03-difc-court-rules-rdc.md |
+| DIFC Arbitration Law (No. 1 of 2008) | CITED:_statute_corpus/arbitration_law_2008.md |
+| DIFC Trust Law (No. 4 of 2018) | CITED:_statute_corpus/trust_law_2018.md |
+| DIFC Real Property Law (No. 1 of 2018) | CITED:_statute_corpus/property_law_2018.md |
+| DIFC Personal Property Law (No. 9 of 2005) | CITED:_statute_corpus/personal_property_law_2005.md |
+| DIFC Court Law (No. 10 of 2004, consolidated Dubai Law No. 2 of 2025) | CITED:_statute_corpus/court_law_2004.md |
+| DIFC Law of Obligations (No. 5 of 2005) | CITED:_statute_corpus/obligations_law_2005.md |
+| DIFC Digital Assets Law (No. 2 of 2024) | CITED:_statute_corpus/digital_assets_law_2024.md |
+| DIFC Regulatory Law (No. 1 of 2004) | CITED:_statute_corpus/regulatory_law_2004.md |
+| Decree 19/2016 — Decree 29/2024 (DIFC-Mainland conflicts) | CITED:_statute_corpus/conflicts_decree_19_29.md |
 
 ## UAE Federal Statutes (Mainland-applicable)
 

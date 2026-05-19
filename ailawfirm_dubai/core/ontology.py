@@ -79,6 +79,24 @@ class DubaiStatute(Enum):
     DIFC_COMPANIES_LAW = "DIFC Companies Law"
     DIFC_INSOLVENCY_LAW = "DIFC Insolvency Law"
     DIFC_RDC = "Rules of the DIFC Courts (RDC)"
+    # PROVENANCE: CITED:_statute_corpus/arbitration_law_2008.md
+    DIFC_ARBITRATION_LAW = "DIFC Arbitration Law (No. 1 of 2008)"
+    # PROVENANCE: CITED:_statute_corpus/trust_law_2018.md
+    DIFC_TRUST_LAW = "DIFC Trust Law (No. 4 of 2018)"
+    # PROVENANCE: CITED:_statute_corpus/property_law_2018.md
+    DIFC_REAL_PROPERTY_LAW = "DIFC Real Property Law (No. 1 of 2018)"
+    # PROVENANCE: CITED:_statute_corpus/personal_property_law_2005.md
+    DIFC_PERSONAL_PROPERTY_LAW = "DIFC Personal Property Law (No. 9 of 2005)"
+    # PROVENANCE: CITED:_statute_corpus/court_law_2004.md
+    DIFC_COURT_LAW = "DIFC Court Law (No. 10 of 2004, consolidated Dubai Law No. 2 of 2025)"
+    # PROVENANCE: CITED:_statute_corpus/obligations_law_2005.md
+    DIFC_OBLIGATIONS_LAW = "DIFC Law of Obligations (No. 5 of 2005)"
+    # PROVENANCE: CITED:_statute_corpus/digital_assets_law_2024.md
+    DIFC_DIGITAL_ASSETS_LAW = "DIFC Digital Assets Law (No. 2 of 2024)"
+    # PROVENANCE: CITED:_statute_corpus/regulatory_law_2004.md
+    DIFC_REGULATORY_LAW = "DIFC Regulatory Law (No. 1 of 2004)"
+    # PROVENANCE: CITED:_statute_corpus/conflicts_decree_19_29.md
+    DIFC_MAINLAND_DECREE_19 = "Decree 19 of 2016 / Decree 29 of 2024 (DIFC-Mainland conflicts)"
     # Mainland (Federal + Emirate)
     UAE_CIVIL_CODE = "UAE Federal Civil Transactions Law (Civil Code)"
     UAE_COMMERCIAL_CODE = "UAE Federal Commercial Transactions Law"
