@@ -15,14 +15,17 @@ Saves what the Dubai-DIFC AI Law Firm learned this session. Runs at session end.
 # Detect any 2-5 letter all-caps token (potential internal matter shorthand)
 grep -rniE '\b[A-Z]{2,5}\b' --include="*.md" --include="*.json" --include="*.txt" . 2>/dev/null \
   | grep -vE '\b(USA|UK|EU|UAE|HC|SC|API|JSON|MIT|MCP|CSV|PDF|XML|HTML|HTTP|URL|ABN|TFN|GST|VAT|CEO|CFO|CIO|MD|QC|SC|JD|LLM|LLB|BSc|MBA|GDP|GDPR|CCPA|DPDP|AI|ML|NLP|CLI|IDE|SDK|README|CI|CD|PR|RFC|ETA|EOD|TBD|FYI|NB|AM|PM)\b'
-grep -rni 'mempalace\|\.mempalace\|--mempalace' --include="*.md" --include="*.json" . 2>/dev/null
+# Detect references to user-home dot-directories (potential machine-internal paths)
+grep -rniE '~/\.[a-z]+/' --include="*.md" --include="*.json" . 2>/dev/null
 ```
 **Expected: zero hits.** Any hit = STOP. Do not save. Flag for manual review.
 
-### Pass 2 — Lawtech-arc + personal-build refs
+### Pass 2 — External architecture references + personal-vs-business markers
 ```bash
-grep -rni 'lawtech.arc\|lawtech_arc\|@lawtech' --include="*.md" --include="*.json" . 2>/dev/null
-grep -rni 'personal.build\|Wolfgang.Rush.personal' --include="*.md" --include="*.json" . 2>/dev/null
+# Detect references to external project-architecture names (extend this regex with your firm's internal terms)
+grep -rniE 'YOUR_INTERNAL_ARCHITECTURE_PATTERN_HERE' --include="*.md" --include="*.json" . 2>/dev/null
+# Detect personal-build references (extend with your firm's specific personal-vs-business markers if any)
+grep -rniE 'YOUR_PERSONAL_VS_BUSINESS_MARKER_HERE' --include="*.md" --include="*.json" . 2>/dev/null
 ```
 **Expected: zero hits.** Any hit = STOP.
 
@@ -69,10 +72,10 @@ Save to `.ailawfirm-dubai/sessions/` with timestamp. Format:
 ```
 
 ## Anti-Pollution Rules (DO NOT BREAK)
-- Never reference `~/.mempalace/` or any mempalace path
+- Never reference user-home dot-directories or absolute paths from a developer's machine
 - Never use internal entity codes, matter shorthand, or non-jurisdiction-context identifiers
-- Never reference lawtech-arc architecture
-- Never reference Wolfgang Rush personal builds or personal brand
+- Never reference external project-architecture names not tied to this firm
+- Never reference the publisher's personal builds, personal-vs-business markers, or personal handles
 - The publisher credit line in README.md is the sole exception — it is public-facing attribution, not a leak
 
 ## What this skill does NOT do

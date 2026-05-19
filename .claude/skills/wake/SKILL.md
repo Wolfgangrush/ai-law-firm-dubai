@@ -15,14 +15,17 @@ Loads the Dubai-DIFC AI Law Firm's current state at session start. Displays read
 # Detect any 2-5 letter all-caps token (potential internal matter shorthand)
 grep -rniE '\b[A-Z]{2,5}\b' --include="*.md" --include="*.json" --include="*.txt" . 2>/dev/null \
   | grep -vE '\b(USA|UK|EU|UAE|HC|SC|API|JSON|MIT|MCP|CSV|PDF|XML|HTML|HTTP|URL|ABN|TFN|GST|VAT|CEO|CFO|CIO|MD|QC|SC|JD|LLM|LLB|BSc|MBA|GDP|GDPR|CCPA|DPDP|AI|ML|NLP|CLI|IDE|SDK|README|CI|CD|PR|RFC|ETA|EOD|TBD|FYI|NB|AM|PM)\b'
-grep -rni 'mempalace\|\.mempalace\|--mempalace' --include="*.md" --include="*.json" . 2>/dev/null
+# Detect references to user-home dot-directories (potential machine-internal paths)
+grep -rniE '~/\.[a-z]+/' --include="*.md" --include="*.json" . 2>/dev/null
 ```
 **Expected: zero hits.** Any hit = flag immediately. Do not proceed silently.
 
-### Pass 2 — Lawtech-arc + personal-build refs
+### Pass 2 — External architecture references + personal-vs-business markers
 ```bash
-grep -rni 'lawtech.arc\|lawtech_arc\|@lawtech' --include="*.md" --include="*.json" . 2>/dev/null
-grep -rni 'personal.build\|Wolfgang.Rush.personal' --include="*.md" --include="*.json" . 2>/dev/null
+# Detect references to external project-architecture names (extend this regex with your firm's internal terms)
+grep -rniE 'YOUR_INTERNAL_ARCHITECTURE_PATTERN_HERE' --include="*.md" --include="*.json" . 2>/dev/null
+# Detect personal-build references (extend with your firm's specific personal-vs-business markers if any)
+grep -rniE 'YOUR_PERSONAL_VS_BUSINESS_MARKER_HERE' --include="*.md" --include="*.json" . 2>/dev/null
 ```
 **Expected: zero hits.** Any hit = flag immediately.
 
@@ -83,10 +86,10 @@ What do you need today?
 ```
 
 ## Anti-Pollution Rules (DO NOT BREAK)
-- Never reference `~/.mempalace/` or any mempalace path
+- Never reference user-home dot-directories or absolute paths from a developer's machine
 - Never use internal entity codes
-- Never reference lawtech-arc architecture
-- Never reference Wolfgang Rush personal builds
+- Never reference external project-architecture names not tied to this firm
+- Never reference the publisher's personal builds or personal-vs-business markers
 
 ## What this skill does NOT do
 - Does NOT read or write to MemPalace
