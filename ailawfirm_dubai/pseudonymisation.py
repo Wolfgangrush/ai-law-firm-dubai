@@ -106,6 +106,50 @@ VEHICLE_REG_RE = re.compile(r"\b[A-Z]{2}[\s-]?\d{1,2}[\s-]?[A-Z]{1,2}[\s-]?\d{4}
 
 
 # ─────────────────────────────────────────────────────────────────────────
+# UAE-native PII patterns (added v0.1.1 for Dubai-DIFC jurisdictional coverage)
+# ─────────────────────────────────────────────────────────────────────────
+
+# Emirates ID: 15 digits in 784-YYYY-XXXXXXX-X format
+EMIRATES_ID_RE = re.compile(r"\b784[-\s]?\d{4}[-\s]?\d{7}[-\s]?\d\b")
+
+# UAE VAT TRN (Tax Registration Number): 15 digits, typically ending in 0003
+VAT_TRN_RE = re.compile(r"\b\d{15}\b")  # caller validates ending pattern if strict
+
+# UAE Trade License Numbers (Dubai Economy · DIFC · IFZA · DMCC · JAFZA · DAFZA)
+TRADE_LICENSE_RE = re.compile(
+    r"\b(?:CN|DIFC|IFZA|DMCC|JAFZA|DAFZA|DSO|DIC|TECOM)[-\s]?\w{4,12}\b",
+    re.IGNORECASE,
+)
+
+# UAE phone: +971 or 050/052/054/055/056/058 prefix
+UAE_PHONE_RE = re.compile(
+    r"(?:\+?971[-\s]?)?(?:0?5[02456 8])[-\s]?\d{3}[-\s]?\d{4}\b"
+)
+
+# UAE Dirham amounts
+AED_AMOUNT_RE = re.compile(
+    r"(?:AED|د\.إ|Dhs\.?|DH)\s?\d{1,3}(?:,\d{3})*(?:\.\d+)?\b",
+    re.IGNORECASE,
+)
+
+# DIFC Court case numbers: [YYYY] DIFC CFI/CA/SCT XXX
+DIFC_CASE_RE = re.compile(
+    r"\[?\d{4}\]?\s+DIFC\s+(?:CFI|CA|SCT)\s+\d{1,4}",
+    re.IGNORECASE,
+)
+
+# UAE Cassation case numbers (tightened — requires "Cassation" keyword to avoid
+# false-matching generic "Civil Appeal No. X of Y" which is caught by CASE_NO_RE)
+UAE_CASSATION_RE = re.compile(
+    r"Cassation\s+(?:Petition|Appeal|Case)\s+No\.?\s*\d+\s+of\s+\d{4}",
+    re.IGNORECASE,
+)
+
+# UAE IBAN: AE + 2-digit checksum + 19 digits (23 chars total)
+UAE_IBAN_RE = re.compile(r"\bAE\d{21}\b")
+
+
+# ─────────────────────────────────────────────────────────────────────────
 # Indian name detection — heuristic (will be augmented by spaCy NER in v0.2.1)
 # ─────────────────────────────────────────────────────────────────────────
 
@@ -262,7 +306,20 @@ class PseudonymisationGateway:
     def __init__(self) -> None:
         # Patterns in priority order — more-specific first so they don't get clobbered
         # Each: (regex_pattern, entity_type_label)
+        #
+        # UAE-native patterns FIRST (Dubai-jurisdictional priority), then Indian
+        # diaspora patterns (Dubai has ~3.4M Indian residents — Indian PII detection
+        # remains valuable for Indian-expat client matters)
         self.patterns: list[tuple[re.Pattern, str]] = [
+            # UAE-native (priority for Dubai jurisdiction)
+            (EMIRATES_ID_RE, "EMIRATES_ID"),
+            (UAE_IBAN_RE, "UAE_IBAN"),
+            (TRADE_LICENSE_RE, "TRADE_LICENSE"),
+            (DIFC_CASE_RE, "DIFC_CASE"),
+            (UAE_CASSATION_RE, "UAE_CASE"),
+            (UAE_PHONE_RE, "UAE_PHONE"),
+            (AED_AMOUNT_RE, "AED_AMOUNT"),
+            # Indian diaspora coverage (legitimate for Indian-expat client matters)
             (AADHAAR_RE, "AADHAAR"),
             (PAN_RE, "PAN"),
             (GSTIN_RE, "GSTIN"),
@@ -271,11 +328,16 @@ class PseudonymisationGateway:
             (CASE_NO_RE, "CASE_NO"),
             (VEHICLE_REG_RE, "VEHICLE"),
             (BANK_ACCT_RE, "BANK_ACCT"),
+            # Generic patterns last (catch-all)
             (EMAIL_RE, "EMAIL"),
             (PHONE_RE, "PHONE"),
             (AMOUNT_RE, "AMOUNT"),
             (DATE_RE, "DATE"),
             (NAME_RE, "PERSON"),
+            # NOTE: VAT_TRN_RE deliberately omitted from automatic detection —
+            # 15-digit pattern matches too aggressively (catches phone numbers,
+            # case numbers, etc.). Callers can register_pattern(VAT_TRN_RE, "VAT_TRN")
+            # for matters where TRN detection is essential.
         ]
 
     def register_pattern(self, pattern: re.Pattern, entity_type: str) -> None:

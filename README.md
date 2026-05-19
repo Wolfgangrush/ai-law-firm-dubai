@@ -10,6 +10,8 @@
 >
 > This software generates assistive drafts and suggestions only. Every legal claim, citation, statute reference, procedural step, deadline calculation, and ground of relief must be independently verified by a qualified human practitioner before filing, advising a client, or relying on the output. The publisher accepts no liability for outputs used without verification.
 
+> 🛡️ **Pseudonymisation coverage (v0.1.1):** The privacy gateway strips PII before any cloud-API call. Covers UAE-native identifiers (Emirates ID · Trade License · DIFC Court case numbers · UAE phone numbers · AED amounts · UAE IBAN) and Indian-diaspora identifiers (Aadhaar · PAN · GSTIN · IFSC · Indian phone — Dubai has ~3.4M Indian residents, so these are essential for Indian-expat client matters). Generic patterns (email · names with honorifics · dates · case numbers) work cross-jurisdiction. Mainland UAE Federal court case-number formats and additional Cassation-specific patterns will expand in v0.2.
+
 > **🧠 AI Law Firm that LEARNS.** Every session makes the next one smarter. Two built-in Claude Code skills power this: `/retrospective` saves what the firm learned at session end — every jurisdiction, statute, argument pattern, and procedural rule you touched is logged so the firm's knowledge compounds. `/wake` loads that accumulated context the next time you start, so you never begin from zero. The firm is your second brain, and it gets sharper with every case.
 
 ---
