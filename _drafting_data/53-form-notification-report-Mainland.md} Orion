@@ -1,0 +1,38 @@
+## Source URL
+https://elaws.moj.gov.ae/ (Federal Decree-Law No. 42 of 2022 on Civil Procedure, Arts 6-13)
+
+## Last Verified
+2026-05-19
+
+## System
+## System: Mainland
+
+## Authority Tier
+Primary Statute (Federal Decree-Law No. 42 of 2022)
+
+## Language Variants
+Arabic (Mandatory)
+
+## Currency Warning
+2022 Reform: Authorized private process servers and electronic notification (SMS/Email).
+
+## Template Type
+Court Form - Notification Report (Taqrir I'lan)
+
+## Structural Skeleton
+1. Header (Court, Case No.)
+2. Details of the Process Server (Bailiff)
+3. Details of the Person Notified
+4. Method of Notification
+5. Outcome (Served/Refused/Absent)
+6. Date and Signature
+
+## Drafting Conventions
+- Must strictly follow the hierarchy of service methods in the Law.
+- Electronic service requires the address to be "verified" or "contractual".
+
+## Fair-Use Excerpt
+"The process server hereby confirms that on [Date], the [Document] was notified to the Respondent via [Method]."
+
+## Practical Use
+Official record of service in Dubai Mainland Courts.

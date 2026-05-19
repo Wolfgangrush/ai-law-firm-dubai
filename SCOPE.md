@@ -31,7 +31,7 @@
 - [ ] Citation lookup against actual databases (DIFC Courts portal, UAE MoJ) — v0.3+
 - [ ] Live cause-list scraping (DIFC e-registry, Dubai Courts CMS/Salif) — v0.3+
 - [ ] Client billing module — v0.2+
-- [ ] GitHub publish — requires RSH verification + decision · post-v0.1
+- [ ] GitHub publish — requires publisher verification + decision · post-v0.1
 - [ ] Production deployment — requires hardening · post-v0.1
 - [ ] UI (terminal or web) — beyond CLI stubs · post-v0.1
 - [ ] Cloud sync — explicitly anti-goal · local-first by design

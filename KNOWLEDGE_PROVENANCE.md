@@ -92,7 +92,7 @@ Maps every domain claim in the codebase to its source. Prevents silent introduct
 
 ## Verification protocol
 
-Before any v0.1 → v0.2 transition, RSH reviews this file. Items in `_research/` are the authoritative source for v0.1 claims.
+Before any v0.1 → v0.2 transition, the publisher reviews this file. Items in `_research/` are the authoritative source for v0.1 claims.
 
 ## What this file is NOT
 

@@ -23,7 +23,7 @@ Usage:
     from ailawfirm_dubai.pseudonymisation import PseudonymisationGateway
 
     gw = PseudonymisationGateway()
-    sanitized, token_map = gw.sanitize("Mr. John Smith filed an MVA writ...")
+    sanitized, token_map = gw.sanitize("Mr. John Smith filed a court writ...")
     # send `sanitized` to cloud API
     response = cloud_api_call(sanitized)
     real = gw.desanitize(response, token_map)
