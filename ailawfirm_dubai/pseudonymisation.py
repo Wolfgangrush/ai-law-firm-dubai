@@ -122,9 +122,7 @@ TRADE_LICENSE_RE = re.compile(
 )
 
 # UAE phone: +971 or 050/052/054/055/056/058 prefix
-UAE_PHONE_RE = re.compile(
-    r"(?:\+?971[-\s]?)?(?:0?5[02456 8])[-\s]?\d{3}[-\s]?\d{4}\b"
-)
+UAE_PHONE_RE = re.compile(r"(?:\+?971[-\s]?)?(?:0?5[02456 8])[-\s]?\d{3}[-\s]?\d{4}\b")
 
 # UAE Dirham amounts
 AED_AMOUNT_RE = re.compile(
