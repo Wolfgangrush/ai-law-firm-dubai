@@ -145,7 +145,7 @@ def cmd_status(args):
 
 
 def cmd_compress(args):
-    """Compress drawers in a wing using AAAK Dialect."""
+    """Compress drawers in a wing using Entity-Aliasing Dialect."""
     import chromadb
     from .dialect import Dialect
 
@@ -355,7 +355,7 @@ def main():
 
     # compress
     p_compress = sub.add_parser(
-        "compress", help="Compress drawers using AAAK Dialect (~30x reduction)"
+        "compress", help="Compress drawers using Entity-Aliasing Dialect (~30x reduction)"
     )
     p_compress.add_argument("--wing", default=None, help="Wing to compress (default: all wings)")
     p_compress.add_argument(

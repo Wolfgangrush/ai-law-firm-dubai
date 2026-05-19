@@ -1,6 +1,6 @@
 ---
 name: wake
-description: Start-of-session state loader for Dubai-DIFC AI Law Firm users. Runs 2-pass leak-check (Rule 1: same scope as retrospective — no mempalace, no AAAK, no lawtech-arc, no personal-build refs). Loads jurisdiction context so every session begins informed.
+description: Start-of-session state loader for Dubai-DIFC AI Law Firm users. Runs 2-pass leak-check (Rule 1: same scope as retrospective — no internal-shorthand, no internal-paths, no personal-build references). Loads jurisdiction context so every session begins informed.
 allowed-tools: Bash, Read, Glob
 ---
 
@@ -10,7 +10,7 @@ Loads the Dubai-DIFC AI Law Firm's current state at session start. Displays read
 
 ## 2-Pass Leak-Check (Rule 1 — execute FIRST, before displaying state)
 
-### Pass 1 — AAAK codes + MemPalace paths
+### Pass 1 — Internal-shorthand codes + internal paths
 ```bash
 # Detect any 2-5 letter all-caps token (potential internal matter shorthand)
 grep -rniE '\b[A-Z]{2,5}\b' --include="*.md" --include="*.json" --include="*.txt" . 2>/dev/null \
@@ -84,7 +84,7 @@ What do you need today?
 
 ## Anti-Pollution Rules (DO NOT BREAK)
 - Never reference `~/.mempalace/` or any mempalace path
-- Never use AAAK entity codes
+- Never use internal entity codes
 - Never reference lawtech-arc architecture
 - Never reference Wolfgang Rush personal builds
 

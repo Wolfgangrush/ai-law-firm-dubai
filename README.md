@@ -6,6 +6,10 @@
 
 **Version:** 0.1.0 · **License:** MIT · **Publisher:** [Wolfgang_rush](https://github.com/Wolfgangrush) — an Indian advocate (Bombay High Court, Nagpur Bench, India). NOT registered in the UAE (DIFC or onshore). This is a software publication for UAE-registered practitioners. · **Engine:** Built on [MemPalace](https://github.com/mempalace/mempalace) (highest-scoring open-source AI memory system · 96.6% LongMemEval R@5)
 
+> ⚠️ **AI can make mistakes. Always verify the output.**
+>
+> This software generates assistive drafts and suggestions only. Every legal claim, citation, statute reference, procedural step, deadline calculation, and ground of relief must be independently verified by a qualified human practitioner before filing, advising a client, or relying on the output. The publisher accepts no liability for outputs used without verification.
+
 > **🧠 AI Law Firm that LEARNS.** Every session makes the next one smarter. Two built-in Claude Code skills power this: `/retrospective` saves what the firm learned at session end — every jurisdiction, statute, argument pattern, and procedural rule you touched is logged so the firm's knowledge compounds. `/wake` loads that accumulated context the next time you start, so you never begin from zero. The firm is your second brain, and it gets sharper with every case.
 
 ---
@@ -50,7 +54,7 @@ BigLaw firms have dual-system teams. Solo practitioners don't. We built this so 
 | 🏛️ | **The Court Registrar** | Knows both systems: **DIFC** (CFI · CA · Cassation · SCT) + **Mainland** (Dubai CFI · CA · Cassation · RDC). Plus shared-jurisdiction rules under Decree 19 of 2016. |
 | ✍️ | **The Drafting Assistant** | Connects to the Wolfgang_rush drafting plugins (separate, MIT, optional). v0.1 = connection · v0.2+ = real templates per system. |
 | 🛡️ | **The Compliance Officer** | Watches your published material for **DIFC Code of Conduct** (DIFC practitioners) + **UAE Legal Profession Code** (Mainland practitioners) publicity firewall. Flags **goAML** Tranche 2 AML obligations, UAE PDPL Article 22 cross-border concerns, DIFC-DPL Article 26 issues. |
-| 📅 | **The Calendar Sync** | ICS feed sync to iPhone Calendar / Google Calendar / Outlook — no third-party API. AAAK summary line (lock-screen safe). Timezone Asia/Dubai (UTC+4, no DST). |
+| 📅 | **The Calendar Sync** | ICS feed sync to iPhone Calendar / Google Calendar / Outlook — no third-party API. code-aliased summary line (lock-screen safe). Timezone Asia/Dubai (UTC+4, no DST). |
 
 ---
 
@@ -125,7 +129,7 @@ Sample commands:
 - **The AI model you connect** — different story. Cloud APIs (DeepSeek · Claude · Gemini) see your queries. See [MODEL_SETUP.md](MODEL_SETUP.md) for the honest privacy table. **For actual client matters → use local Ollama. No exceptions.**
 - **DIFC Code of Conduct + UAE Legal Profession Code + UAE PDPL + DIFC-DPL + goAML:** the Compliance Officer specialist checks your published language for publicity/solicitation risk, flags PDPL Article 22 cross-border concerns, surfaces Tranche 2 AML red flags. But YOU remain responsible for compliance.
 - **Dual-system isolation:** matters tagged DIFC stay in DIFC mode (common-law citations, English templates) · matters tagged Mainland stay in Mainland mode (civil-law citations, Arabic templates). The system_switch_agent prevents accidental cross-system contamination.
-- **Calendar sync:** ICS feed only. No Google Calendar API. No third-party data processor. Lock-screen event summaries use AAAK codes.
+- **Calendar sync:** ICS feed only. No Google Calendar API. No third-party data processor. Lock-screen event summaries use entity aliases.
 
 See [NO_PII_NO_DATA.md](NO_PII_NO_DATA.md) for the complete zero-collection architecture and UAE PDPL + DIFC-DPL controller analysis.
 

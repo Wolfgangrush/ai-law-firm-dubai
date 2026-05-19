@@ -1,6 +1,6 @@
 ---
 name: retrospective
-description: End-of-session save discipline for Dubai-DIFC AI Law Firm users. Runs 2-pass leak-check (Rule 6: no mempalace, no AAAK, no lawtech-arc, no personal-build refs). Saves session learning so the firm gets smarter with every use.
+description: End-of-session save discipline for Dubai-DIFC AI Law Firm users. Runs 2-pass leak-check (Rule 6: no internal-shorthand, no internal-paths, no personal-build references). Saves session learning so the firm gets smarter with every use.
 allowed-tools: Bash, Read, Glob
 ---
 
@@ -10,7 +10,7 @@ Saves what the Dubai-DIFC AI Law Firm learned this session. Runs at session end.
 
 ## 2-Pass Leak-Check (Rule 6 — execute BEFORE any save)
 
-### Pass 1 — AAAK codes + MemPalace paths
+### Pass 1 — Internal-shorthand codes + internal paths
 ```bash
 # Detect any 2-5 letter all-caps token (potential internal matter shorthand)
 grep -rniE '\b[A-Z]{2,5}\b' --include="*.md" --include="*.json" --include="*.txt" . 2>/dev/null \
@@ -51,7 +51,7 @@ Save to `.ailawfirm-dubai/sessions/` with timestamp. Format:
 ### Step 4: Display save confirmation
 ```
 🧠 Dubai-DIFC AI Law Firm — session saved.
-   Leak-check: ✅ PASS (Pass 1: 0 AAAK, 0 mempalace | Pass 2: 0 lawtech-arc, 0 personal-build)
+   Leak-check: ✅ PASS (Pass 1: 0 shorthand, 0 paths | Pass 2: 0 personal-build)
    Next session starts smarter.
 ```
 

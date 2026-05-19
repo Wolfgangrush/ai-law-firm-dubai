@@ -85,16 +85,16 @@ def tool_status():
         "rooms": rooms,
         "palace_path": _config.palace_path,
         "protocol": PALACE_PROTOCOL,
-        "aaak_dialect": AAAK_SPEC,
+        "alias_dialect": DIALECT_SPEC,
     }
 
 
-# ── AAAK Dialect Spec ─────────────────────────────────────────────────────────
+# ── Entity-Aliasing Dialect Spec ─────────────────────────────────────────────────────────
 # Included in status response so the AI learns it on first wake-up call.
-# Also available via mempalace_get_aaak_spec tool.
+# Also available via mempalace_get_dialect_spec tool.
 
 PALACE_PROTOCOL = """IMPORTANT — MemPalace Memory Protocol:
-1. ON WAKE-UP: Call mempalace_status to load palace overview + AAAK spec.
+1. ON WAKE-UP: Call mempalace_status to load palace overview + entity-aliasing spec.
 2. BEFORE RESPONDING about any person, project, or past event: call mempalace_kg_query or mempalace_search FIRST. Never guess — verify.
 3. IF UNSURE about a fact (name, gender, age, relationship): say "let me check" and query the palace. Wrong is worse than slow.
 4. AFTER EACH SESSION: call mempalace_diary_write to record what happened, what you learned, what matters.
@@ -102,7 +102,7 @@ PALACE_PROTOCOL = """IMPORTANT — MemPalace Memory Protocol:
 
 This protocol ensures the AI KNOWS before it speaks. Storage is not memory — but storage + this protocol = memory."""
 
-AAAK_SPEC = """AAAK is a compressed memory dialect that MemPalace uses for efficient storage.
+DIALECT_SPEC = """Entity-aliasing is a compressed memory dialect that MemPalace uses for efficient storage.
 It is designed to be readable by both humans and LLMs without decoding.
 
 FORMAT:
@@ -118,8 +118,8 @@ FORMAT:
 EXAMPLE:
   FAM: ALC→♡JOR | 2D(kids): RIL(18,sports) MAX(11,chess+swimming) | BEN(contributor)
 
-Read AAAK naturally — expand codes mentally, treat *markers* as emotional context.
-When WRITING AAAK: use entity codes, mark emotions, keep structure tight."""
+Read entity-aliasing naturally — expand codes mentally, treat *markers* as emotional context.
+When WRITING alias dialect: use entity codes, mark emotions, keep structure tight."""
 
 
 def tool_list_wings():
@@ -218,9 +218,9 @@ def tool_check_duplicate(content: str, threshold: float = 0.9):
         return {"error": str(e)}
 
 
-def tool_get_aaak_spec():
-    """Return the AAAK dialect specification."""
-    return {"aaak_spec": AAAK_SPEC}
+def tool_get_dialect_spec():
+    """Return the entity-aliasing dialect specification."""
+    return {"dialect_spec": DIALECT_SPEC}
 
 
 def tool_traverse_graph(start_room: str, max_hops: int = 2):
@@ -467,10 +467,10 @@ TOOLS = {
         "input_schema": {"type": "object", "properties": {}},
         "handler": tool_get_taxonomy,
     },
-    "ailawfirm_dubai_get_aaak_spec": {
-        "description": "Get the AAAK dialect specification — the compressed memory format MemPalace uses. Call this if you need to read or write AAAK-compressed memories.",
+    "ailawfirm_dubai_get_dialect_spec": {
+        "description": "Get the entity-aliasing dialect specification — the compressed memory format MemPalace uses. Call this if you need to read or write alias-compressed memories.",
         "input_schema": {"type": "object", "properties": {}},
-        "handler": tool_get_aaak_spec,
+        "handler": tool_get_dialect_spec,
     },
     "ailawfirm_dubai_kg_query": {
         "description": "Query the knowledge graph for an entity's relationships. Returns typed facts with temporal validity. E.g. 'Max' → child_of Alice, loves chess, does swimming. Filter by date with as_of to see what was true at a point in time.",
@@ -649,7 +649,7 @@ TOOLS = {
         "handler": tool_delete_drawer,
     },
     "ailawfirm_dubai_diary_write": {
-        "description": "Write to your personal agent diary in AAAK format. Your observations, thoughts, what you worked on, what matters. Each agent has their own diary with full history. Write in AAAK for compression — e.g. 'SESSION:2026-04-04|built.palace.graph+diary.tools|ALC.req:agent.diaries.in.aaak|★★★'. Use entity codes from the AAAK spec.",
+        "description": "Write to your personal agent diary in entity-aliasing format. Your observations, thoughts, what you worked on, what matters. Each agent has their own diary with full history. Write in entity-aliasing for compression — e.g. 'SESSION:2026-04-04|built.palace.graph+diary.tools|ALC.req:agent.diaries.in.aaak|★★★'. Use entity codes from the entity-aliasing spec.",
         "input_schema": {
             "type": "object",
             "properties": {
@@ -659,7 +659,7 @@ TOOLS = {
                 },
                 "entry": {
                     "type": "string",
-                    "description": "Your diary entry in AAAK format — compressed, entity-coded, emotion-marked",
+                    "description": "Your diary entry in entity-aliasing format — compressed, entity-coded, emotion-marked",
                 },
                 "topic": {
                     "type": "string",
@@ -671,7 +671,7 @@ TOOLS = {
         "handler": tool_diary_write,
     },
     "ailawfirm_dubai_diary_read": {
-        "description": "Read your recent diary entries (in AAAK). See what past versions of yourself recorded — your journal across sessions.",
+        "description": "Read your recent diary entries (in entity-aliasing). See what past versions of yourself recorded — your journal across sessions.",
         "input_schema": {
             "type": "object",
             "properties": {

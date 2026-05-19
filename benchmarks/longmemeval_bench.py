@@ -18,12 +18,12 @@ Outputs:
 
 Modes:
     raw     — baseline: raw text into ChromaDB (default)
-    aaak    — AAAK dialect compression before ingestion
+    alias    — entity-aliasing dialect compression before ingestion
     rooms   — topic-based room detection + room-filtered search
 
 Usage:
     python benchmarks/longmemeval_bench.py data/longmemeval_s_cleaned.json
-    python benchmarks/longmemeval_bench.py data/longmemeval_s_cleaned.json --mode aaak
+    python benchmarks/longmemeval_bench.py data/longmemeval_s_cleaned.json --mode alias
     python benchmarks/longmemeval_bench.py data/longmemeval_s_cleaned.json --mode rooms
     python benchmarks/longmemeval_bench.py data/longmemeval_s_cleaned.json --granularity turn
     python benchmarks/longmemeval_bench.py data/longmemeval_s_cleaned.json --limit 20
@@ -243,7 +243,7 @@ def build_palace_and_retrieve(entry, granularity="session", n_results=50):
 
 def build_palace_and_retrieve_aaak(entry, granularity="session", n_results=50):
     """
-    AAAK mode: compress each session/turn with AAAK dialect before ingesting.
+    entity-aliasing mode: compress each session/turn with entity-aliasing dialect before ingesting.
     Query still uses raw question text — tests whether compressed representations
     retain enough semantic signal for retrieval.
     """
@@ -252,7 +252,7 @@ def build_palace_and_retrieve_aaak(entry, granularity="session", n_results=50):
     dialect = Dialect()
 
     corpus = []  # original text (for output)
-    corpus_compressed = []  # AAAK compressed (for ingestion)
+    corpus_compressed = []  # entity-aliasing compressed (for ingestion)
     corpus_ids = []
     corpus_timestamps = []
 
@@ -286,7 +286,7 @@ def build_palace_and_retrieve_aaak(entry, granularity="session", n_results=50):
 
     collection = _fresh_collection()
 
-    # Ingest AAAK compressed text
+    # Ingest entity-aliasing compressed text
     collection.add(
         documents=corpus_compressed,
         ids=[f"doc_{i}" for i in range(len(corpus_compressed))],

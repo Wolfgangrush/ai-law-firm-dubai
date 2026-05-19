@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AAAK Dialect -- Compressed Symbolic Memory Language
+Entity-Aliasing Dialect -- Compressed Symbolic Memory Language
 ====================================================
 
 A structured symbolic format that ANY LLM reads natively at ~30x compression.
@@ -291,7 +291,7 @@ _STOP_WORDS = {
 
 class Dialect:
     """
-    AAAK Dialect encoder -- works on plain text or structured zettel data.
+    Entity-Aliasing Dialect encoder -- works on plain text or structured zettel data.
 
     Usage:
         # Basic: compress any text
@@ -538,7 +538,7 @@ class Dialect:
 
     def compress(self, text: str, metadata: dict = None) -> str:
         """
-        Compress plain text into AAAK Dialect format.
+        Compress plain text into Entity-Aliasing Dialect format.
 
         This is the primary method for mempalace: takes any text content
         (drawer content, transcript chunk, note) and returns a compressed
@@ -550,7 +550,7 @@ class Dialect:
                       'room', 'date', etc.
 
         Returns:
-            AAAK-compressed string (~30x smaller than input)
+            alias-compressed string (~30x smaller than input)
         """
         metadata = metadata or {}
 
@@ -679,7 +679,7 @@ class Dialect:
         return ""
 
     def encode_zettel(self, zettel: dict) -> str:
-        """Encode a single zettel into AAAK Dialect."""
+        """Encode a single zettel into Entity-Aliasing Dialect."""
         zid = zettel["id"].split("-")[-1]
 
         entity_codes = [self.encode_entity(p) for p in zettel.get("people", [])]
@@ -718,7 +718,7 @@ class Dialect:
         return f"T:{from_id}<->{to_id}|{short_label}"
 
     def encode_file(self, zettel_json: dict) -> str:
-        """Encode an entire zettel file into AAAK Dialect."""
+        """Encode an entire zettel file into Entity-Aliasing Dialect."""
         lines = []
 
         source = zettel_json.get("source_file", "unknown")
@@ -753,7 +753,7 @@ class Dialect:
     # === FILE-BASED COMPRESSION ===
 
     def compress_file(self, zettel_json_path: str, output_path: str = None) -> str:
-        """Read a zettel JSON file and compress it to AAAK Dialect."""
+        """Read a zettel JSON file and compress it to Entity-Aliasing Dialect."""
         with open(zettel_json_path, "r") as f:
             data = json.load(f)
         dialect = self.encode_file(data)
@@ -763,7 +763,7 @@ class Dialect:
         return dialect
 
     def compress_all(self, zettel_dir: str, output_path: str = None) -> str:
-        """Compress ALL zettel files into a single AAAK Dialect file."""
+        """Compress ALL zettel files into a single Entity-Aliasing Dialect file."""
         all_dialect = []
         for fname in sorted(os.listdir(zettel_dir)):
             if fname.endswith(".json"):
@@ -904,7 +904,7 @@ class Dialect:
     # === DECODING ===
 
     def decode(self, dialect_text: str) -> dict:
-        """Parse an AAAK Dialect string back into a readable summary."""
+        """Parse an Entity-Aliasing Dialect string back into a readable summary."""
         lines = dialect_text.strip().split("\n")
         result = {"header": {}, "arc": "", "zettels": [], "tunnels": []}
 
@@ -934,7 +934,7 @@ class Dialect:
         return len(text) // 3
 
     def compression_stats(self, original_text: str, compressed: str) -> dict:
-        """Get compression statistics for a text->AAAK conversion."""
+        """Get compression statistics for a text->alias conversion."""
         orig_tokens = self.count_tokens(original_text)
         comp_tokens = self.count_tokens(compressed)
         return {
@@ -951,7 +951,7 @@ if __name__ == "__main__":
     import sys
 
     def usage():
-        print("AAAK Dialect -- Compressed Symbolic Memory for Any LLM")
+        print("Entity-Aliasing Dialect -- Compressed Symbolic Memory for Any LLM")
         print()
         print("Usage:")
         print("  python dialect.py <text>                         # Compress text from argument")
@@ -1022,10 +1022,10 @@ if __name__ == "__main__":
         stats = dialect.compression_stats(json_str, encoded)
         print("=== COMPRESSION STATS ===")
         print(f"JSON:     ~{stats['original_tokens']:,} tokens")
-        print(f"AAAK:     ~{stats['compressed_tokens']:,} tokens")
+        print(f"Aliased: ~{stats['compressed_tokens']:,} tokens")
         print(f"Ratio:    {stats['ratio']:.0f}x")
         print()
-        print("=== AAAK DIALECT OUTPUT ===")
+        print("=== entity-aliasing DIALECT OUTPUT ===")
         print(encoded)
 
     elif args[0] == "--layer1":
@@ -1044,7 +1044,7 @@ if __name__ == "__main__":
         compressed = dialect.compress(text)
         stats = dialect.compression_stats(text, compressed)
         print(f"Original: ~{stats['original_tokens']} tokens ({stats['original_chars']} chars)")
-        print(f"AAAK:     ~{stats['compressed_tokens']} tokens ({stats['compressed_chars']} chars)")
+        print(f"Aliased: ~{stats['compressed_tokens']} tokens ({stats['compressed_chars']} chars)")
         print(f"Ratio:    {stats['ratio']:.1f}x")
         print()
         print(compressed)

@@ -18,7 +18,7 @@ Usage:
     python benchmarks/convomem_bench.py                          # sample 100 items
     python benchmarks/convomem_bench.py --limit 500              # sample 500 items
     python benchmarks/convomem_bench.py --category user_evidence  # one category only
-    python benchmarks/convomem_bench.py --mode aaak              # test AAAK compression
+    python benchmarks/convomem_bench.py --mode alias              # test entity-aliasing compression
 """
 
 import os
