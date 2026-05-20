@@ -128,15 +128,63 @@ Sample commands:
 
 ---
 
-## 🛡️ Privacy posture (the honest version)
+## 🔒 Privacy & Data Handling — what stays where
 
-- **The tool itself:** your matters, clients, drafts, notes NEVER leave your laptop. Local SQLite + ChromaDB. MIT-licensed source you can audit.
-- **The AI model you connect** — different story. Cloud APIs (DeepSeek · Claude · Gemini) see your queries. See [MODEL_SETUP.md](MODEL_SETUP.md) for the honest privacy table. **For actual client matters → use local Ollama. No exceptions.**
-- **DIFC Code of Conduct + UAE Legal Profession Code + UAE PDPL + DIFC-DPL + goAML:** the Compliance Officer specialist checks your published language for publicity/solicitation risk, flags PDPL Article 22 cross-border concerns, surfaces Tranche 2 AML red flags. But YOU remain responsible for compliance.
-- **Dual-system isolation:** matters tagged DIFC stay in DIFC mode (common-law citations, English templates) · matters tagged Mainland stay in Mainland mode (civil-law citations, Arabic templates). The system_switch_agent prevents accidental cross-system contamination.
-- **Calendar sync:** ICS feed only. No Google Calendar API. No third-party data processor. Lock-screen event summaries use entity aliases.
+**Your data stays on your machine.** All matters, drafts, audit logs, calendar entries, and client information are stored locally in `~/.ailawfirm_dubai_difc/`. Never uploaded. Never synced to a third-party cloud. No telemetry. No "anonymous usage statistics." No cloud-default fallback.
 
-See [NO_PII_NO_DATA.md](NO_PII_NO_DATA.md) for the complete zero-collection architecture and UAE PDPL + DIFC-DPL controller analysis.
+**Reasoning happens via an LLM API of your choice.** v0.1 defaults to Claude (Anthropic API). Adapters for OpenAI (GPT-4) and Google Cloud Vertex AI (paid-tier Gemini) arrive in v0.3+. Local-LLM support (truly air-gapped — no data leaves your machine, ever) is on the v0.3+ roadmap for solicitors with strict data-residency requirements.
+
+### What goes to the API provider during each query
+
+Each time the firm reasons about a matter, the following are sent to your chosen API provider:
+- Your prompt (the question or instruction)
+- Relevant context the firm pulls from your local matter folder (current draft state, recent orders, citations being verified)
+
+Your full matter history, audit logs, and unrelated cases are NOT sent. The firm sends the minimum context needed to answer the current question.
+
+### What API providers contractually guarantee
+
+| Provider | Trains on your data? | Retention | Source |
+|---|---|---|---|
+| **Claude API** (Anthropic) | ❌ No — Commercial Services data is not used for training | ~30 days for safety/abuse review (Zero Data Retention available on enterprise contract) | [Anthropic Privacy Policy](https://www.anthropic.com/legal/privacy) · [Commercial Terms](https://www.anthropic.com/legal/commercial-terms) |
+| **OpenAI API** (GPT-4) | ❌ No — API data not used for training since March 2023 | ~30 days for abuse review (ZDR available) | [OpenAI API Data Usage Policies](https://openai.com/policies/api-data-usage-policies) |
+| **Gemini API (paid via Vertex AI)** | ❌ No — paid-tier API data not used for training | Per Google Cloud contract | [Vertex AI data governance](https://cloud.google.com/vertex-ai/docs/general/data-governance) |
+| **Gemini Free Tier** | ⚠️ **YES — Google AI uses free-tier prompts to improve products** | — | [Google AI Studio terms](https://ai.google.dev/gemini-api/terms) — **DO NOT use free-tier Gemini for confidential client matters.** |
+
+### What that does NOT mean — solicitor's residual risk
+
+Even though API data is not used for training:
+
+1. **Data IS in transit** during each query — it passes through the provider's infrastructure
+2. **Brief logging retention** (typically 30 days) means the provider holds the data for that window
+3. **Lawful access requests** — a subpoena, lawful intercept warrant, PDPL data-subject access request, or provider security incident could expose data during the retention window
+4. **Provider-side breach risk** — however small, it exists
+
+This is fundamentally different from "true local" (where no data leaves your machine, ever, period). v0.1 is API-based reasoning with strong contractual protections; v0.3+ adds true-local-LLM adapter for solicitors who need the air-gap.
+
+### Solicitor's decision
+
+If your matter is:
+- **General commercial / corporate / contract drafting** → Claude / OpenAI / paid Gemini API are appropriate. Contractual no-training protections are strong. Audit logs are local.
+- **Legal-privileged client communication / privileged litigation strategy** → Evaluate against your jurisdiction's professional conduct rules. Most regulators permit reasoned use of cloud-AI with disclosure to the client. (See Dubai (DIFC / DFSA) guidance.) Document the choice in your audit log.
+- **PDPL special-category data / health / criminal record / political opinion** → Use ZDR-contract API tier OR wait for v0.3+ local-LLM. Do not use free-tier Gemini.
+- **State secrets / classified material / under-seal court orders** → Use v0.3+ local-LLM when available; v0.1 is not designed for this risk profile.
+
+The firm's audit log captures every API call (timestamp, agent, prompt-summary, output-summary) at `~/.ailawfirm_dubai_difc/audit_logs/`. Logs never leave your machine. They are your professional-conduct compliance trail.
+
+### v0.3+ roadmap
+
+- **Model-agnostic adapter** (Path B-Full) — OpenAI · Gemini paid · Ollama (local Llama 3.3 70B / Qwen 2.5 72B) · drop-in via configuration
+- **True air-gap mode** — no API calls, no telemetry, no network egress; reasoning entirely on user's machine
+- **Bring-your-own-model** — for solicitors with provisioned LLM infrastructure (e.g. in-firm Azure OpenAI / private Vertex tenant)
+
+Tracked at: [drafting-agents-core issues](https://github.com/Wolfgangrush/drafting-agents-core/issues).
+
+---
+
+**No agenda · no telemetry · no cloud-default · MIT licensed · AED 0 forever.**
+
+**Dubai (DIFC / DFSA) Rule compliance built into the tool's audit + transparency-gate architecture.** Solicitor remains professionally responsible for every output. The firm is a force-multiplier, not a substitute for judgment.
 
 ---
 
