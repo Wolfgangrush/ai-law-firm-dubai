@@ -223,15 +223,15 @@ Six sister jurisdictions on the same architecture: 🇮🇳 India · 🇸🇬 Si
 
 The Wolfgang Rush AI Law Firm family ships across 7 jurisdictions. Honest status of the v0.2 legal-knowledge layer (statute corpus + drafting data) per firm:
 
-| Firm | _statute_corpus | _drafting_data | drafting-agents-core | GitHub |
+| Firm | Statute corpus | Drafting corpus | Shared agents | GitHub |
 |------|---|---|---|---|
-| 🇮🇳 **India** | maintainer-curated knowledge (maintainer-curated) | Wolfgang_rush plugins (14 Indian-litigation plugins, separate stack) | Not applicable — Indian-specific | ✅ LIVE |
-| 🇪🇺 **EU** | ✅ 11 statutes · 8/8 Tier-1 | ✅ 26 templates · 9/9 Tier-1 | ✅ Path B-Lite | ✅ LIVE |
-| 🇦🇺 **Australia** | ✅ done | ✅ done | ✅ Path B-Lite | ✅ LIVE |
-| 🇦🇪 **Dubai-DIFC** | ✅ done | ✅ done | ✅ Path B-Lite | ✅ LIVE |
-| 🇸🇬 **Singapore** | ✅ done | ✅ done | ✅ Path B-Lite | ✅ LIVE |
-| 🇬🇧 **UK** | ❌ pending (queued for processing) | ❌ pending (queued for processing) | ✅ Path B-Lite | ✅ LIVE (firm code) |
-| 🇺🇸 **USA** | ❌ pending (queued for processing) | ❌ pending (queued for processing) | ✅ Path B-Lite | ✅ LIVE (firm code) |
+| 🇮🇳 **India** | Native knowledge base · maintainer-curated | Wolfgang_rush plugins (14 Indian-litigation plugins · separate stack) | Not applicable — Indian-specific | ✅ LIVE |
+| 🇪🇺 **EU** | ✅ 11 statutes · 8/8 Tier-1 | ✅ 26 templates · 9/9 Tier-1 | ✅ Migrated | ✅ LIVE |
+| 🇦🇺 **Australia** | ✅ Complete | ✅ Complete | ✅ Migrated | ✅ LIVE |
+| 🇦🇪 **Dubai-DIFC** | ✅ Complete | ✅ Complete | ✅ Migrated | ✅ LIVE |
+| 🇸🇬 **Singapore** | ✅ Complete | ✅ Complete | ✅ Migrated | ✅ LIVE |
+| 🇬🇧 **UK** | 🚧 v0.2 milestone | 🚧 v0.2 milestone | ✅ Migrated | ✅ LIVE (firm code) |
+| 🇺🇸 **USA** | 🚧 v0.2 milestone | 🚧 v0.2 milestone | ✅ Migrated | ✅ LIVE (firm code) |
 
 **Plus:**
 - **AI Startup Firm — India v0.1** (legal-ops brain for founders)
