@@ -150,6 +150,7 @@ Your full matter history, audit logs, and unrelated cases are NOT sent. The firm
 | **OpenAI API** (GPT-4) | ❌ No — API data not used for training since March 2023 | ~30 days for abuse review (ZDR available) | [OpenAI API Data Usage Policies](https://openai.com/policies/api-data-usage-policies) |
 | **Gemini API (paid via Vertex AI)** | ❌ No — paid-tier API data not used for training | Per Google Cloud contract | [Vertex AI data governance](https://cloud.google.com/vertex-ai/docs/general/data-governance) |
 | **Gemini Free Tier** | ⚠️ **YES — Google AI uses free-tier prompts to improve products** | — | [Google AI Studio terms](https://ai.google.dev/gemini-api/terms) — **DO NOT use free-tier Gemini for confidential client matters.** |
+| **DeepSeek V4 Pro API** | ❌ No — per DeepSeek API terms, inputs/outputs not used for model training | Retention policy less documented than OpenAI/Anthropic; verify for matter sensitivity | [DeepSeek API ToS](https://platform.deepseek.com/api-docs/legal) · **Note:** provider is China-based; consider jurisdictional data-residency requirements |
 
 ### What that does NOT mean — solicitor's residual risk
 
@@ -174,7 +175,7 @@ The firm's audit log captures every API call (timestamp, agent, prompt-summary, 
 
 ### v0.3+ roadmap
 
-- **Model-agnostic adapter** (Path B-Full) — OpenAI · Gemini paid · Ollama (local Llama 3.3 70B / Qwen 2.5 72B) · drop-in via configuration
+- **Model-agnostic adapter** (Path B-Full) — OpenAI · paid Gemini · **DeepSeek V4 Pro** · Ollama (local Llama 3.3 70B / Qwen 2.5 72B) · drop-in via configuration
 - **True air-gap mode** — no API calls, no telemetry, no network egress; reasoning entirely on user's machine
 - **Bring-your-own-model** — for solicitors with provisioned LLM infrastructure (e.g. in-firm Azure OpenAI / private Vertex tenant)
 
@@ -215,6 +216,30 @@ Copy this folder to a USB drive · OneDrive · iCloud Drive · Dropbox = complet
 - **v0.4+** — DIFC Courts website / UAE Federal Legal Gazette cross-reference · ADGM bridge (Abu Dhabi) · Apple EventKit native · CalDAV bidirectional sync · deeper Cassation precedent search
 
 Six sister jurisdictions on the same architecture: 🇮🇳 India · 🇸🇬 Singapore · 🇬🇧 UK · 🇦🇺 Australia · 🇪🇺 EU · 🇺🇸 USA — each as its own MIT-licensed repo.
+
+---
+
+## 🌐 Family Status (honest · cross-firm)
+
+The Wolfgang Rush AI Law Firm family ships across 7 jurisdictions. Honest status of the v0.2 legal-knowledge layer (statute corpus + drafting data) per firm:
+
+| Firm | _statute_corpus | _drafting_data | drafting-agents-core | GitHub |
+|------|---|---|---|---|
+| 🇮🇳 **India** | maintainer-curated knowledge (maintainer-curated) | Wolfgang_rush plugins (14 Indian-litigation plugins, separate stack) | Not applicable — Indian-specific | ✅ LIVE |
+| 🇪🇺 **EU** | ✅ 11 statutes · 8/8 Tier-1 | ✅ 26 templates · 9/9 Tier-1 | ✅ Path B-Lite | ✅ LIVE |
+| 🇦🇺 **Australia** | ✅ done | ✅ done | ✅ Path B-Lite | ✅ LIVE |
+| 🇦🇪 **Dubai-DIFC** | ✅ done | ✅ done | ✅ Path B-Lite | ✅ LIVE |
+| 🇸🇬 **Singapore** | ✅ done | ✅ done | ✅ Path B-Lite | ✅ LIVE |
+| 🇬🇧 **UK** | ❌ pending (queued for processing) | ❌ pending (queued for processing) | ✅ Path B-Lite | ✅ LIVE (firm code) |
+| 🇺🇸 **USA** | ❌ pending (queued for processing) | ❌ pending (queued for processing) | ✅ Path B-Lite | ✅ LIVE (firm code) |
+
+**Plus:**
+- **AI Startup Firm — India v0.1** (legal-ops brain for founders)
+- **GC In-House Brain** (multi-jurisdictional, 8 modules — 3 live · 5 shipping v0.2+)
+
+Both share the same `drafting-agents-core` architecture pattern.
+
+All firms migrated to the central [drafting-agents-core](https://github.com/Wolfgangrush/drafting-agents-core) agent library on 2026-05-20 (Path B-Lite) — single source of truth for the agent layer; jurisdictional knowledge stays per-firm.
 
 ---
 
