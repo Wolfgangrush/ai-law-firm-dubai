@@ -204,6 +204,65 @@ Copy this folder to a USB drive · OneDrive · iCloud Drive · Dropbox = complet
 
 ---
 
+## 🔄 How to update your firm
+
+When a new version of AI Law Firm — Dubai · DIFC is published, you pull it in with **one command**. Your matter data + your project-root `CLAUDE.md` are **never touched** — only the firm's installed code, skills, and prompts refresh.
+
+### Path 1 — Plain terminal
+
+```
+ailawfirm-dubai update
+```
+
+Under the hood this runs `pip install --upgrade git+https://github.com/Wolfgangrush/ai-law-firm-dubai.git`. After it finishes, restart any open `ailawfirm-dubai` session so the new skills + prompts load.
+
+### Path 2 — Inside Claude Code
+
+Type:
+
+```
+/update
+```
+
+Claude runs the same command for you and reports the result.
+
+### Path 3 — Inside Gemini CLI
+
+Type:
+
+```
+/update
+```
+
+Same outcome — Gemini calls `ailawfirm-dubai update` for you.
+
+### When to update
+
+- **The publisher tells you** a new version is out → update.
+- **Monthly hygiene** → update once a month so you stay current on skills + bug fixes.
+- **After hitting a bug** → first thing to try is updating, in case it is already fixed upstream.
+
+### What does NOT update (by design)
+
+- Your matter folders (`~/Desktop/<your-firm>/<matter>/...`)
+- Your project-root `CLAUDE.md` (your customisations always win)
+- Your `~/.ailawfirm-dubai/` config + palace data
+- Your chosen AI model setup (Ollama · DeepSeek · Claude · Gemini)
+
+Only the firm's installed Python code, skills, and template files refresh. Your practice is unaffected.
+
+### One catch — existing users + new template rules
+
+If a new version updates the template `CLAUDE.md` (the firm's standing rules), your project-root `CLAUDE.md` is preserved because your customisations always win. To see what changed in the template after an update:
+
+```
+diff CLAUDE.md "$(python3 -c 'import ailawfirm_dubai, os; print(os.path.join(os.path.dirname(ailawfirm_dubai.__file__), "templates/CLAUDE.md"))')"
+```
+
+Review the diff and merge what you want into your own `CLAUDE.md`.
+
+---
+
 ## 🛤️ Roadmap (honest)
 
 > 🙏 **Honest note on timelines:** Solo-author OSS · ships as time permits · v0.2 / v0.3 / v0.4+ targets are indicative, not committed dates. Open an issue if a specific feature on a specific timeline matters to your work.
