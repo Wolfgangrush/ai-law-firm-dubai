@@ -18,6 +18,7 @@ Commands:
 import os
 import sys
 import argparse
+from .update import cmd_update, copy_claude_md_template
 from pathlib import Path
 
 from .config import AILawFirmDubaiConfig
@@ -395,6 +396,16 @@ def main():
     # status
     sub.add_parser("status", help="Show what's been filed")
 
+    # update — pull latest firm code from upstream (apt-upgrade style)
+    p_update = sub.add_parser(
+        "update",
+        help="Pull the latest firm code, skills, and prompts from upstream (matter data is NEVER touched)",
+    )
+    p_update.add_argument(
+        "--quiet", "-q", action="store_true", help="suppress pip output (errors still print)"
+    )
+
+
     p_connect = sub.add_parser(
         "connect-local",
         help="One-command setup: install Ollama + download Qwen3 + write config (local-AI, zero cloud)",
@@ -419,6 +430,7 @@ def main():
         "wake-up": cmd_wakeup,
         "status": cmd_status,
         "connect-local": cmd_connect_local,
+        "update": cmd_update,
     }
     dispatch[args.command](args)
 
