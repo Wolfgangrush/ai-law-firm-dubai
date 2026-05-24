@@ -44,10 +44,10 @@ Repository = "https://github.com/Wolfgangrush/ai-law-firm-dubai"
 "Upstream Engine" = "https://github.com/mempalace/mempalace"
 
 [tool.setuptools.packages.find]
-include = 
+include = ["ailawfirm_dubai*"]
+
 [tool.setuptools.package-data]
 ailawfirm_dubai = ["templates/*.md", "templates/*.toml"]
-["ailawfirm_dubai*"]
 
 [project.scripts]
 ailawfirm-dubai = "ailawfirm_dubai:main"

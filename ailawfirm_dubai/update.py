@@ -5,6 +5,7 @@ Exposes:
   cmd_update(args)               pulls latest firm code
   copy_claude_md_template(dir)   seeds CLAUDE.md into project root on init
 """
+
 import shutil
 import subprocess
 import sys
@@ -60,6 +61,7 @@ def copy_claude_md_template(target_dir) -> None:
 def main():
     """Allow  standalone."""
     import argparse
+
     parser = argparse.ArgumentParser(description="Update ailawfirm_dubai from upstream.")
     parser.add_argument("--quiet", "-q", action="store_true")
     args = parser.parse_args()

@@ -52,6 +52,12 @@ def cmd_init(args):
     detect_rooms_local(project_dir=args.dir)
     AILawFirmDubaiConfig().init()
 
+    # Seed CLAUDE.md template into the user's project root (preserves existing).
+    try:
+        copy_claude_md_template(args.dir)
+    except Exception as _e:
+        print(f"  (CLAUDE.md seed skipped: {_e})")
+
 
 def cmd_mine(args):
     palace_path = (
@@ -404,7 +410,6 @@ def main():
     p_update.add_argument(
         "--quiet", "-q", action="store_true", help="suppress pip output (errors still print)"
     )
-
 
     p_connect = sub.add_parser(
         "connect-local",
