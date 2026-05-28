@@ -286,11 +286,11 @@ The Wolfgang Rush AI Law Firm family ships across 7 jurisdictions. Honest status
 | Firm | Statute corpus | Drafting corpus | Shared agents | GitHub |
 |------|---|---|---|---|
 | 🇮🇳 **India** | Native knowledge base · maintainer-curated | Wolfgang_rush plugins (14 Indian-litigation plugins · separate stack) | Not applicable — Indian-specific | ✅ LIVE |
-| 🇪🇺 **EU** | ✅ 11 statutes · 8/8 Tier-1 | ✅ 26 templates · 9/9 Tier-1 | ✅ Migrated | ✅ LIVE |
-| 🇦🇺 **Australia** | ✅ Complete | ✅ Complete | ✅ Migrated | ✅ LIVE |
+| 🇪🇺 **EU** | ✅ 11 statutes · 8/8 Tier-1 | ✅ **56 templates** · litigation + commercial complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
+| 🇦🇺 **Australia** | ✅ 13 Tier-1 statute digests + 39 research files | ✅ **79 templates** · litigation + commercial + tribunal complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
 | 🇦🇪 **Dubai-DIFC** | ✅ Complete | ✅ **81 templates** · dual-track DIFC + Mainland · litigation + commercial + tribunal complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
-| 🇸🇬 **Singapore** | ✅ Complete | ✅ Complete | ✅ Migrated | ✅ LIVE |
-| 🇬🇧 **UK** | 🚧 v0.2 milestone | 🚧 v0.2 milestone | ✅ Migrated | ✅ LIVE (firm code) |
+| 🇸🇬 **Singapore** | ✅ 17 statute digests Tier-1 | ✅ **55 templates + 6 scaffolds** · litigation + commercial + regulatory complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
+| 🇬🇧 **UK** | ✅ 10 statute digests Tier-1 | ✅ **107 templates** · litigation + commercial + Tier-3 specialist + procedural anchors complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
 | 🇺🇸 **USA** | 🚧 v0.2 milestone | 🚧 v0.2 milestone | ✅ Migrated | ✅ LIVE (firm code) |
 
 **Plus:**
