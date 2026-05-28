@@ -291,7 +291,7 @@ The Wolfgang Rush AI Law Firm family ships across 7 jurisdictions. Honest status
 | 🇦🇪 **Dubai-DIFC** | ✅ Complete | ✅ **81 templates** · dual-track DIFC + Mainland · litigation + commercial + tribunal complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
 | 🇸🇬 **Singapore** | ✅ 17 statute digests Tier-1 | ✅ **55 templates + 6 scaffolds** · litigation + commercial + regulatory complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
 | 🇬🇧 **UK** | ✅ 10 statute digests Tier-1 | ✅ **107 templates** · litigation + commercial + Tier-3 specialist + procedural anchors complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
-| 🇺🇸 **USA** | 🚧 v0.2 milestone | 🚧 v0.2 milestone | ✅ Migrated | ✅ LIVE (firm code) |
+| 🇺🇸 **USA** | ✅ 23 federal-first Tier-1 statute digests | ✅ **89 templates** · all 13 litigation categories + commercial + corporate complete (v0.2 closed 2026-05-29) | ✅ Migrated | ✅ LIVE |
 
 **Plus:**
 - **AI Startup Firm — India v0.1** (legal-ops brain for founders)
