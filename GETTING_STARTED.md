@@ -13,7 +13,7 @@ A free, local-first practice OS for Dubai solo advocates. It ingests your case f
 ## Installation
 
 ```bash
-cd internal-paths/ai-law-firm/dubai-difc
+cd ~/ai-law-firm-dubai-difc
 pip install -e .
 ```
 

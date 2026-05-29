@@ -13,7 +13,7 @@
 ## इंस्टॉलेशन
 
 ```bash
-cd internal-paths/ai-law-firm/dubai-difc
+cd ~/ai-law-firm-dubai-difc
 pip install -e .
 ```
 
