@@ -1,10 +1,10 @@
 # 🇦🇪 AI Law Firm — Dubai-DIFC · Solo Edition
 
-> **Free dual-system practice OS for every Dubai solo lawyer. DIFC offshore (common-law, English) + Dubai Mainland (civil-law, Arabic) — in one terminal-native, local-first tool. Your data stays on your laptop.**
+> **Free dual-system practice OS for every Dubai solo lawyer. DIFC offshore (common-law, English) + Dubai Mainland (civil-law, Arabic) — in one terminal-native tool. Local-first by default (Ollama + Qwen3 — nothing leaves your laptop). Cloud-LLM optional with the [Pseudonymisation Gateway](https://github.com/Wolfgangrush/pseudonymisation-gateway) sanitising PII before any prompt leaves the machine; UAE PDPL Article 22 + DIFC-DPL Article 26 cross-border-transfer obligations remain YOUR responsibility for any cloud-mode use.**
 
 **For registered legal professionals only.** Intended for lawyers registered with the DIFC Courts Academy of Law (for DIFC matters), lawyers registered with the UAE Ministry of Justice (for onshore matters), foreign lawyers with DIFC rights of audience under Practice Direction 3 of 2018 or analogous provisions, in-house counsel of UAE entities, and paralegals working under their supervision. **If you are not a registered legal professional, do not use this tool to produce client-facing legal work.** Read [DISCLAIMER.md](DISCLAIMER.md) before installation.
 
-**Version:** 0.1.0 · **License:** MIT · **Publisher:** [Wolfgang_rush](https://github.com/Wolfgangrush) — an Indian advocate (Bombay High Court, Nagpur Bench, India). NOT registered in the UAE (DIFC or onshore). This is a software publication for UAE-registered practitioners. · **Engine:** Built on [MemPalace](https://github.com/mempalace/mempalace) (highest-scoring open-source AI memory system · 96.6% LongMemEval R@5)
+**Version:** 0.1.1 · **License:** MIT · **Publisher:** [Wolfgang_rush](https://github.com/Wolfgangrush) — an Indian advocate (Bombay High Court, Nagpur Bench, India). NOT registered in the UAE (DIFC or onshore). This is a software publication for UAE-registered practitioners. · **Engine:** Built on [MemPalace](https://github.com/mempalace/mempalace) (highest-scoring open-source AI memory system · 96.6% LongMemEval R@5)
 
 > ⚠️ **AI can make mistakes. Always verify the output.**
 >
@@ -44,7 +44,7 @@
 > - **DIFC CLPD (Compulsory Legal Practitioners Development)** plus separate Mainland CPD obligations
 > - **Data localisation tension** — UAE PDPL Article 22 cross-border restrictions + DIFC-DPL Articles 26-31
 
-BigLaw firms have dual-system teams. Solo practitioners don't. We built this so a Dubai solo lawyer can have a second brain that costs **AED 0 forever**, runs locally, knows both systems, and respects DIFC-DPL + UAE PDPL at the architecture layer.
+BigLaw firms have dual-system teams. Solo practitioners don't. We built this so a Dubai solo lawyer can have a second brain that costs **AED 0 forever**, runs locally by default (Ollama + Qwen3), knows both systems, and supports DIFC-DPL + UAE PDPL at the architecture layer — either by absence of transmission (local mode) or by Pseudonymisation Gateway sanitisation (cloud mode, with UAE PDPL Article 22 + DIFC-DPL Article 26 cross-border-transfer obligations remaining YOUR responsibility).
 
 ---
 
@@ -104,9 +104,9 @@ Three honest model options — see [MODEL_SETUP.md](MODEL_SETUP.md):
 
 | Choice | Cost | Privacy | Best for |
 |---|---|---|---|
-| 🥇 **Local Ollama + Qwen3** | AED 0 forever | 🟢 Perfect — nothing leaves your laptop | **Client matters · UAE PDPL Article 22 cross-border · DIFC-DPL Articles 26-31 international transfer-restricted data** |
-| 🥈 **DeepSeek API** | ~AED 8-20/mo | ⚠️ Acceptable IF opt-out — but China is NOT on UAE Data Office adequate-jurisdiction list; PDPL Article 22 applies | Non-client work · public-law research · templates |
-| 🥉 **Claude / Gemini API** | ~AED 80-300/mo | 🟢 Strong (enterprise privacy default-ON) | Heavy daily users with executed PDPL Article 22 safeguards |
+| 🥇 **Local Ollama + Qwen3** | AED 0 forever | 🟢 Perfect — nothing leaves your laptop · UAE PDPL Article 22 + DIFC-DPL Article 26 not triggered (no cross-border transfer occurs) | **Client matters · UAE PDPL Article 22 cross-border-restricted data · DIFC-DPL Articles 26-31 international-transfer-restricted data · use this tier when zero cross-border data flow is required** |
+| 🥈 **DeepSeek API** | ~AED 8-20/mo | ⚠️ Pseudonymisation Gateway sanitises Emirates ID/Trade License/case references/Aadhaar + names before transmission, BUT China is NOT on UAE Data Office adequate-jurisdiction list; PDPL Article 22 cross-border safeguards still apply to the pseudonymised transmission | Non-client work · public-law research · templates |
+| 🥉 **Claude / Gemini API** | ~AED 80-300/mo | 🟢 Strong (enterprise privacy default-ON) — Gateway sanitises before transmission | Heavy daily users with executed PDPL Article 22 safeguards + DIFC-DPL Article 26 standard contractual provisions or DIFC Commissioner's adequacy determination. Gateway sanitisation supports your Article 22 safeguard posture but does NOT discharge the standard contractual clause / adequacy / consent obligation. |
 
 ### Step 4 — Run
 
@@ -130,9 +130,25 @@ Sample commands:
 
 ## 🔒 Privacy & Data Handling — what stays where
 
-**Your data stays on your machine.** All matters, drafts, audit logs, calendar entries, and client information are stored locally in `~/.ailawfirm_dubai_difc/`. Never uploaded. Never synced to a third-party cloud. No telemetry. No "anonymous usage statistics." No cloud-default fallback.
+**Architecture — three pieces decide your privacy posture:**
 
-**Reasoning happens via an LLM API of your choice.** v0.1 defaults to Claude (Anthropic API). Adapters for OpenAI (GPT-4) and Google Cloud Vertex AI (paid-tier Gemini) arrive in v0.3+. Local-LLM support (truly air-gapped — no data leaves your machine, ever) is on the v0.3+ roadmap for solicitors with strict data-residency requirements.
+**(1) Local-only state.** Your matters, drafts, audit logs, calendar entries, and configuration live in `~/.ailawfirm_dubai_difc/`. Never uploaded by the tool. Never synced to a third-party cloud by the tool. No telemetry. No "anonymous usage statistics." The publisher operates zero infrastructure and cannot access this folder. Verifiable via `grep -ri "telemetry\|analytics\|requests.post\|urlopen" ailawfirm_dubai/` — should return only user-initiated cloud-LLM calls.
+
+**(2) LLM backend — you choose.** The default `connect-local` command configures Ollama + Qwen3 to run the language model on your laptop (truly nothing leaves; UAE PDPL Article 22 + DIFC-DPL Article 26 are not triggered in this configuration because no cross-border transfer occurs). If you opt into a cloud-LLM tier (DeepSeek / Claude / Gemini) for quality reasons, see the tier table above for cost + privacy trade-offs.
+
+**(3) Pseudonymisation Gateway — always-on for cloud mode.** When you configure a cloud-LLM provider in `~/.ailawfirm_dubai_difc/config.json`, the internalised `PseudonymisationGateway` (source: `ailawfirm_dubai/pseudonymisation.py`) automatically substitutes real names, government IDs (Emirates ID · Trade License · Aadhaar for Indian-diaspora matters), contact identifiers (phone · email), and case references (DIFC CFI/CA/Cassation/SCT numbers · Mainland Dubai Court file numbers) with deterministic placeholders BEFORE the prompt leaves your machine. The placeholder ↔ original map lives in memory only (never written to disk; destroyed when the gateway goes out of scope). Cloud vendors see only the abstract structure of the matter; the user sees real values restored in the response.
+
+**⚠️ UAE PDPL Article 22 + DIFC-DPL Article 26 in cloud mode.** Both regimes restrict cross-border transfer of personal data. Gateway sanitisation supports your safeguard posture (the data crossing the border is structurally pseudonymised — meaningful technical measure) but does NOT discharge:
+- **Federal Decree-Law 45/2021 Article 22** — requires either (a) adequate-jurisdiction destination per UAE Data Office determination, OR (b) standard contractual provisions, OR (c) explicit consent, OR (d) other lawful basis under Article 22.
+- **DIFC-DPL 5/2020 Articles 26-31** — requires either (a) DIFC Commissioner adequacy decision, OR (b) standard contractual provisions, OR (c) other lawful basis under DIFC-DPL.
+
+For matters touching DIFC-DPL "restricted personal data" (Article 9 special categories: racial/ethnic origin · political opinions · religious beliefs · trade union membership · genetic/biometric data · health data · sex life/sexual orientation · criminal convictions) AND/OR Mainland-side health, financial, biometric, or criminal data under PDPL Article 9, additional consent + safeguards apply — consider Local Ollama tier for those matters.
+
+**DIFC vs Mainland system contamination** — the `system_switch_agent` prevents accidental DIFC-Mainland blending in matter context. The dual-system tag enforced from matter-creation forward is independent of the dual-mode privacy architecture; both apply.
+
+**goAML Tranche 2 AML** + **DIFC Code of Conduct (DIFC practitioners)** + **UAE Legal Profession Code (Mainland practitioners)** all apply atop the dual-mode privacy architecture. The Compliance Officer agent flags applicable regimes based on matter context.
+
+The wedge: every other cloud-AI legal tool sends raw client PII to the LLM by default. Wolfgang Rush AI Law Firm — Dubai-DIFC ships Ollama-first AND ships the Gateway as the privacy primitive that closes the gap when you choose cloud mode for quality reasons — while remaining honest that PDPL Article 22 / DIFC-DPL Article 26 / DIFC Article 9 / Mainland PDPL Article 9 obligations remain yours to execute.
 
 ### What goes to the API provider during each query
 
