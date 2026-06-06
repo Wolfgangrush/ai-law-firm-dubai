@@ -177,23 +177,25 @@ Even though API data is not used for training:
 3. **Lawful access requests** — a subpoena, lawful intercept warrant, PDPL data-subject access request, or provider security incident could expose data during the retention window
 4. **Provider-side breach risk** — however small, it exists
 
-This is fundamentally different from "true local" (where no data leaves your machine, ever, period). v0.1 is API-based reasoning with strong contractual protections; v0.3+ adds true-local-LLM adapter for solicitors who need the air-gap.
+This is fundamentally different from local-LLM mode (where no data leaves your machine, ever, period). The `connect-local` command already configures Ollama + Qwen3 as the v0.1 default — solicitors handling confidential, privileged, or special-category data should stay in local-LLM mode for that work. The cloud-LLM tier exists for non-confidential research, public-law analysis, and template scaffolding where contractual no-training is a sufficient safeguard.
 
 ### Solicitor's decision
 
 If your matter is:
 - **General commercial / corporate / contract drafting** → Claude / OpenAI / paid Gemini API are appropriate. Contractual no-training protections are strong. Audit logs are local.
 - **Legal-privileged client communication / privileged litigation strategy** → Evaluate against your jurisdiction's professional conduct rules. Most regulators permit reasoned use of cloud-AI with disclosure to the client. (See Dubai (DIFC / DFSA) guidance.) Document the choice in your audit log.
-- **PDPL special-category data / health / criminal record / political opinion** → Use ZDR-contract API tier OR wait for v0.3+ local-LLM. Do not use free-tier Gemini.
-- **State secrets / classified material / under-seal court orders** → Use v0.3+ local-LLM when available; v0.1 is not designed for this risk profile.
+- **PDPL special-category data / health / criminal record / political opinion** → Stay in `connect-local` (Ollama + Qwen3) mode. Do not opt into any cloud-LLM tier for these matters; do not use free-tier Gemini.
+- **State secrets / classified material / under-seal court orders** → Stay in `connect-local` (Ollama + Qwen3) mode. For physically air-gapped networks where the pip-install / model-download / auto-update paths are also prohibited, await the v0.3+ signed offline-install bundle below.
 
 The firm's audit log captures every API call (timestamp, agent, prompt-summary, output-summary) at `~/.ailawfirm_dubai_difc/audit_logs/`. Logs never leave your machine. They are your professional-conduct compliance trail.
 
 ### v0.3+ roadmap
 
-- **Model-agnostic adapter** (Path B-Full) — OpenAI · paid Gemini · **DeepSeek V4 Pro** · Ollama (local Llama 3.3 70B / Qwen 2.5 72B) · drop-in via configuration
-- **True air-gap mode** — no API calls, no telemetry, no network egress; reasoning entirely on user's machine
-- **Bring-your-own-model** — for solicitors with provisioned LLM infrastructure (e.g. in-firm Azure OpenAI / private Vertex tenant)
+> What v0.1 already ships: (a) local-LLM default via `connect-local` (Ollama + Qwen3 — nothing leaves your laptop in local mode), (b) configurable cloud-LLM tier covering Claude / OpenAI / paid Gemini / DeepSeek, (c) Pseudonymisation Gateway sanitising PII before any cloud-LLM call, and (d) no first-party telemetry. The items below extend the floor — they are not a future replacement for what is already shipped.
+
+- **Signed offline-install bundle** — the `pip install` path currently touches PyPI and the Ollama model registry; v0.3+ ships a signed offline-installable archive with the Qwen3 model pre-bundled, removing the last network-touch point even at install time. For solicitors on physically air-gapped networks (under-seal court matter rooms, state-secret-clearance environments).
+- **In-firm LLM tenant adapter** — drop-in config for Azure OpenAI / private Vertex / on-prem vLLM endpoints. Distinct from the today-shipped public-API cloud-LLM tier; targets solicitors whose firm already provisions LLM infrastructure under its own DPA.
+- **Expanded local-model surface** — Llama 3.3 70B / Qwen 2.5 72B / DeepSeek V4 Pro (open-weights via Ollama), for solicitors with larger laptops who want better-than-Qwen3-14b local reasoning.
 
 Tracked at: [drafting-agents-core issues](https://github.com/Wolfgangrush/drafting-agents-core/issues).
 
@@ -288,7 +290,8 @@ Review the diff and merge what you want into your own `CLAUDE.md`.
 - **v0.1.0** *(shipped)* — bootstrap: dual-system ontology · 11-intent brain (with SYSTEM_SWITCH) · 7 specialist agents (4 live · 3 stubs) · 3 working MCP tools (court · citation · calendar) · 5-language onboarding (English · Arabic · Urdu · Hindi · Tagalog) · connect-local one-command CLI · LEGAL_EXPOSURE_PLAYBOOK v0.1 compliance
 - **v0.2 — knowledge layer** *(shipped 2026-05-28)* — **81 dual-track drafting templates** in `_drafting_data/` covering DIFC + Mainland + SHARED + FOREIGN-LAW-PRACTICE: (a) DIFC contracts + pleadings + motions + court forms; (b) Mainland contracts + pleadings + motions + court forms; (c) **full 13-category litigation backbone** across both systems where applicable — disclosure dual-track (DIFC RDC Part 28 + Mainland FDL 42/2022) · expert evidence dual-track (DIFC RDC Part 31 + Mainland Khabir) · default judgment dual-track (DIFC + Mainland) · enforcement dual-track (DIFC Execution + TPDO + Charging Order + DIFC-Dubai Protocol; Mainland Execution Court + Foreign Judgment Recognition) · DIFC injunctions (freezing Mareva + without-notice) · counsel briefing SHARED · Mainland Federal Court judicial review · DIFC trial documentation (bundle + chronology + closing) · Mainland hearings memorandum · ADR SHARED (mediation + Singapore Convention + WP/Calderbank/RDC Part 36) · dual-track insolvency (DIFC Insolvency Law 2019 + Mainland FDL 51/2023) · tribunals (DIFC SCT + Mainland Labour MoHRE + RDSC Real Estate) · DIAC arbitration + Award Set-Aside/NYC enforcement.
 - **v0.2 — statute knowledge layer** *(shipped 2026-05-29)* — **24 statute digests** in `_statute_corpus/` covering the full dual-track backbone: (a) **15 DIFC** instruments — Contract Law 2004 · Employment Law 2019 · Companies Law 2018 · Data Protection Law 2020 · Insolvency Law 2019 · Arbitration Law 2008 · Court Law 2004 · RDC Rules · Regulatory Law 2004 · Law of Obligations 2005 · Personal Property Law 2005 · Real Property Law 2018 · Trust Law 2018 · Digital Assets Law 2024 · Conflicts Decree 19/29; (b) **9 Mainland UAE Federal** instruments — Civil Code (Federal Law 5/1985) · Commercial Code (FDL 50/2022) · Civil Procedure Law (FDL 42/2022) · Penal Code (FDL 31/2021) · Evidence Law (FDL 35/2022) · Labour Law (FDL 33/2021) · Commercial Companies Law (FDL 32/2021) · Personal Data Protection Law (FDL 45/2021) · AML Law (FDL 20/2018, 2025 amendments).
-- **v0.2 — frontend / UX layer** *(in progress)* — Pseudonymisation Gateway for safe cloud-mode · matter dashboard · goAML reporting helper
+- **v0.1.1 — Pseudonymisation Gateway** *(shipped 2026-05-29)* — internalised at `ailawfirm_dubai/pseudonymisation.py`; sanitises PII before any cloud-LLM call. Standalone source at [pseudonymisation-gateway](https://github.com/Wolfgangrush/pseudonymisation-gateway).
+- **v0.2 — frontend / UX layer** *(in progress)* — matter dashboard · goAML reporting helper
 - **v0.3** *(following milestone)* — **firm mode** for multi-lawyer dual-system practices · role/permission · conflict-check across systems · trust-account / client-account compliance · Decree 19 of 2016 shared-jurisdiction handling
 - **v0.4+** — DIFC Courts website / UAE Federal Legal Gazette cross-reference · ADGM bridge (Abu Dhabi) · Apple EventKit native · CalDAV bidirectional sync · deeper Cassation precedent search · Federal Cassation Court templates · DIFC Wills + Probate · Family / Personal Status Court (Sharia) · Mainland Property Law beyond RDSC
 
