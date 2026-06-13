@@ -118,7 +118,7 @@ DO NOT use cloud mode for:
   ❌ Privileged communications
   ❌ Sensitive commercial / M&A / regulatory submissions
 
-The publisher (Wolfgang_rush) is NOT in this data path. You contract directly
+The publisher (wolfgang_rush) is NOT in this data path. You contract directly
 with [VENDOR] under their terms of service.
 ```
 
@@ -133,7 +133,7 @@ For client matters: stay on Option A (local-only).
 
 If you integrate this Software with **any third-party AI service, CLI tool, or AI-assisted IDE** — including but not limited to: **Anthropic Claude API · Claude CLI · Claude Code · OpenAI API · Codex CLI · Google Gemini API · Gemini CLI · DeepSeek API · OpenCode · Cursor · GitHub Copilot · JetBrains AI · Mistral · Cohere · HuggingFace inference · Groq · Together AI · Qwen API · or any other model provider, CLI, IDE, or AI-assisted tool** — you do so **at your own risk** and under the terms of service of that third-party tool.
 
-The publisher (Wolfgang_rush · Rushikesh R. Mahajan):
+The publisher (wolfgang_rush · Rushikesh R. Mahajan):
 
 - Does **NOT** recommend any specific third-party tool
 - Does **NOT** receive any compensation, referral fee, or benefit from any third-party tool's adoption

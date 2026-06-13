@@ -61,7 +61,7 @@ ailawfirm-dubai search "goAML"
 
 ## الترخيص
 
-MIT. مبني على [MemPalace](https://github.com/mempalace/mempalace). منشور بواسطة Wolfgang_rush.
+MIT. مبني على [MemPalace](https://github.com/mempalace/mempalace). منشور بواسطة wolfgang_rush.
 
 ---
 

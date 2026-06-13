@@ -36,7 +36,7 @@ compliance_agent انتباہ کرتا ہے: goAML (اینٹی منی لانڈر
 
 ## لائسنس
 
-MIT. [MemPalace](https://github.com/mempalace/mempalace) پر مبنی۔ Wolfgang_rush کی طرف سے شائع کردہ۔
+MIT. [MemPalace](https://github.com/mempalace/mempalace) پر مبنی۔ wolfgang_rush کی طرف سے شائع کردہ۔
 
 ---
 

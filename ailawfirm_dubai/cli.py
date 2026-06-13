@@ -273,7 +273,7 @@ WELCOME_BANNER = r"""
   Pick: ailawfirm-dubai init --system difc|mainland|both
 ═══════════════════════════════════════════════════════════════════
   Built on MemPalace (MIT — github.com/mempalace/mempalace)
-  Published by Wolfgang_rush · $0 forever · your data stays here
+  Published by wolfgang_rush · $0 forever · your data stays here
   https://github.com/Wolfgangrush/ai-law-firm-dubai
 ═══════════════════════════════════════════════════════════════════
 """
@@ -302,7 +302,7 @@ def main():
 
     parser = argparse.ArgumentParser(
         description="AI Law Firm Dubai-DIFC — dual-system practice OS for UAE solo advocates. "
-        "Built on MemPalace (MIT). Published by Wolfgang_rush.",
+        "Built on MemPalace (MIT). Published by wolfgang_rush.",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )

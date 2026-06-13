@@ -4,13 +4,13 @@
 
 **For registered legal professionals only.** Intended for lawyers registered with the DIFC Courts Academy of Law (for DIFC matters), lawyers registered with the UAE Ministry of Justice (for onshore matters), foreign lawyers with DIFC rights of audience under Practice Direction 3 of 2018 or analogous provisions, in-house counsel of UAE entities, and paralegals working under their supervision. **If you are not a registered legal professional, do not use this tool to produce client-facing legal work.** Read [DISCLAIMER.md](DISCLAIMER.md) before installation.
 
-**Version:** 0.1.1 · **License:** MIT · **Publisher:** [Wolfgang_rush](https://github.com/Wolfgangrush) — an Indian advocate (Bombay High Court, Nagpur Bench, India). NOT registered in the UAE (DIFC or onshore). This is a software publication for UAE-registered practitioners. · **Engine:** Built on [MemPalace](https://github.com/mempalace/mempalace) (highest-scoring open-source AI memory system · 96.6% LongMemEval R@5)
+**Version:** 0.1.1 · **License:** MIT · **Publisher:** [wolfgang_rush](https://github.com/Wolfgangrush) — an Indian advocate (High Courts of India, India). NOT registered in the UAE (DIFC or onshore). This is a software publication for UAE-registered practitioners. · **Engine:** Built on [MemPalace](https://github.com/mempalace/mempalace) (highest-scoring open-source AI memory system · 96.6% LongMemEval R@5)
 
 > ⚠️ **AI can make mistakes. Always verify the output.**
 >
 > This software generates assistive drafts and suggestions only. Every legal claim, citation, statute reference, procedural step, deadline calculation, and ground of relief must be independently verified by a qualified human practitioner before filing, advising a client, or relying on the output. The publisher accepts no liability for outputs used without verification.
 
-> 🛡️ **Privacy primitive: PII pseudonymisation** via [pseudonymisation-gateway](https://github.com/Wolfgangrush/pseudonymisation-gateway) (Wolfgang Rush · MIT). This firm uses the `uae` jurisdiction module + Indian-diaspora overlay for cross-jurisdiction PII coverage. Open-source · zero runtime deps · session-scoped · in-memory only · never writes PII to disk.
+> 🛡️ **Privacy primitive: PII pseudonymisation** via [pseudonymisation-gateway](https://github.com/Wolfgangrush/pseudonymisation-gateway) (wolfgang_rush · MIT). This firm uses the `uae` jurisdiction module + Indian-diaspora overlay for cross-jurisdiction PII coverage. Open-source · zero runtime deps · session-scoped · in-memory only · never writes PII to disk.
 
 
 > 🛡️ **Pseudonymisation coverage (v0.1.1):** The privacy gateway pseudonymises PII before any cloud-API call; any residue the scanner can't fully resolve is surfaced to you and audit-logged — you retain the final call (v0.3 honest-disclosure). Covers UAE-native identifiers (Emirates ID · Trade License · DIFC Court case numbers · UAE phone numbers · AED amounts · UAE IBAN) and Indian-diaspora identifiers (Aadhaar · PAN · GSTIN · IFSC · Indian phone — Dubai has ~3.4M Indian residents, so these are essential for Indian-expat client matters). Generic patterns (email · names with honorifics · dates · case numbers) work cross-jurisdiction. Mainland UAE Federal court case-number formats and additional Cassation-specific patterns will expand in v0.2.
@@ -148,7 +148,7 @@ For matters touching DIFC-DPL "restricted personal data" (Article 9 special cate
 
 **goAML Tranche 2 AML** + **DIFC Code of Conduct (DIFC practitioners)** + **UAE Legal Profession Code (Mainland practitioners)** all apply atop the dual-mode privacy architecture. The Compliance Officer agent flags applicable regimes based on matter context.
 
-The wedge: every other cloud-AI legal tool sends raw client PII to the LLM by default. Wolfgang Rush AI Law Firm — Dubai-DIFC ships Ollama-first AND ships the Gateway as the privacy primitive that closes the gap when you choose cloud mode for quality reasons — while remaining honest that PDPL Article 22 / DIFC-DPL Article 26 / DIFC Article 9 / Mainland PDPL Article 9 obligations remain yours to execute.
+The wedge: every other cloud-AI legal tool sends raw client PII to the LLM by default. wolfgang_rush AI Law Firm — Dubai-DIFC ships Ollama-first AND ships the Gateway as the privacy primitive that closes the gap when you choose cloud mode for quality reasons — while remaining honest that PDPL Article 22 / DIFC-DPL Article 26 / DIFC Article 9 / Mainland PDPL Article 9 obligations remain yours to execute.
 
 ### What goes to the API provider during each query
 
@@ -301,11 +301,11 @@ Six sister jurisdictions on the same architecture: 🇮🇳 India · 🇸🇬 Si
 
 ## 🌐 Family Status (honest · cross-firm)
 
-The Wolfgang Rush AI Law Firm family ships across 7 jurisdictions. Honest status of the v0.2 legal-knowledge layer (statute corpus + drafting data) per firm:
+The wolfgang_rush AI Law Firm family ships across 7 jurisdictions. Honest status of the v0.2 legal-knowledge layer (statute corpus + drafting data) per firm:
 
 | Firm | Statute corpus | Drafting corpus | Shared agents | GitHub |
 |------|---|---|---|---|
-| 🇮🇳 **India** | Native knowledge base · maintainer-curated | Wolfgang_rush plugins (14 Indian-litigation plugins · separate stack) | Not applicable — Indian-specific | ✅ LIVE |
+| 🇮🇳 **India** | Native knowledge base · maintainer-curated | wolfgang_rush plugins (14 Indian-litigation plugins · separate stack) | Not applicable — Indian-specific | ✅ LIVE |
 | 🇪🇺 **EU** | ✅ 11 statutes · 8/8 Tier-1 | ✅ **56 templates** · litigation + commercial complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
 | 🇦🇺 **Australia** | ✅ 13 Tier-1 statute digests + 39 research files | ✅ **79 templates** · litigation + commercial + tribunal complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
 | 🇦🇪 **Dubai-DIFC** | ✅ 24 statute digests · dual-track (15 DIFC + 9 Mainland UAE Federal) · v0.2 closed 2026-05-29 | ✅ **81 templates** · dual-track DIFC + Mainland · litigation + commercial + tribunal complete (v0.2 closed 2026-05-28) | ✅ Migrated | ✅ LIVE |
@@ -340,7 +340,7 @@ All firms migrated to the central [drafting-agents-core](https://github.com/Wolf
 ## 🙏 Credits
 
 - **Engine — all architectural credit:** [MemPalace](https://github.com/mempalace/mempalace) — the highest-scoring open-source AI memory system ever benchmarked. MIT licensed. We are a downstream fork specialized for Dubai dual-system practice.
-- **Publisher:** [Wolfgang_rush](https://github.com/Wolfgangrush) — an Indian advocate (Bombay HC Nagpur, India). MIT-licensed legal-tech publisher.
+- **Publisher:** [wolfgang_rush](https://github.com/Wolfgangrush) — an Indian advocate (High Courts of India, India). MIT-licensed legal-tech publisher.
 - **Inspired by:** every Dubai solo lawyer who's worked Friday-night switching between DIFC English-language pleadings and Mainland Arabic-language submissions.
 
 ---

@@ -4,7 +4,7 @@
 
 ## What this tool is
 
-AI Law Firm — Dubai-DIFC · Solo is **open-source developer software** (MIT-licensed) published by Wolfgang_rush. It is a **productivity aid for qualified legal professionals**. It is not a legal service. It does not perform autonomous legal reasoning. Every output must be reviewed by counsel admitted to practice in the relevant jurisdiction before any client-facing use.
+AI Law Firm — Dubai-DIFC · Solo is **open-source developer software** (MIT-licensed) published by wolfgang_rush. It is a **productivity aid for qualified legal professionals**. It is not a legal service. It does not perform autonomous legal reasoning. Every output must be reviewed by counsel admitted to practice in the relevant jurisdiction before any client-facing use.
 
 ## Dual-system positioning
 
@@ -41,7 +41,7 @@ This tool does NOT:
 
 ## Publisher's jurisdiction
 
-The publisher (Wolfgang_rush — Rushikesh R. Mahajan) is an Indian advocate admitted to practice at the Bombay High Court, Nagpur Bench, under the Advocates Act 1961. The publisher is NOT admitted to practice in the UAE (DIFC or onshore). The publisher does NOT offer legal services in the UAE. The publisher offers this tool as **open-source software**, published from India under the MIT license, for use by UAE-registered practitioners.
+The publisher (wolfgang_rush — Rushikesh R. Mahajan) is an Indian advocate admitted to practice at the High Courts of India, under the Advocates Act 1961. The publisher is NOT admitted to practice in the UAE (DIFC or onshore). The publisher does NOT offer legal services in the UAE. The publisher offers this tool as **open-source software**, published from India under the MIT license, for use by UAE-registered practitioners.
 
 ## UAE Federal Decree-Law No. 45 of 2021 (Personal Data Protection)
 
