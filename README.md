@@ -1,3 +1,5 @@
+> ⚠️ **This repository has been superseded.** The updated open-core community edition is at **[Wolfgangrush/ai-brain-dubai](https://github.com/Wolfgangrush/ai-brain-dubai)**. This repo is kept public to preserve existing links.
+
 # 🇦🇪 AI Law Firm — Dubai-DIFC · Solo Edition
 
 > **Free dual-system practice OS for every Dubai solo lawyer. DIFC offshore (common-law, English) + Dubai Mainland (civil-law, Arabic) — in one terminal-native tool. Local-first by default (Ollama + Qwen3 — nothing leaves your laptop). Cloud-LLM optional with the [Pseudonymisation Gateway](https://github.com/Wolfgangrush/pseudonymisation-gateway) sanitising PII before any prompt leaves the machine; UAE PDPL Article 22 + DIFC-DPL Article 26 cross-border-transfer obligations remain YOUR responsibility for any cloud-mode use.**
