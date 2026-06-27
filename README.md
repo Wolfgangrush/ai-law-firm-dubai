@@ -1,3 +1,20 @@
+<div align="center">
+  <img src="docs/banner.png" width="820"/>
+  <br/><br/>
+  <b>Practice OS for Dubai DIFC — sovereign, local-first, anti-fabrication.</b>
+  <br/><br/>
+  Visit the live site: <a href="https://wolfgangrush.github.io">wolfgangrush.github.io</a>
+</div>
+
+<br/>
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/LEGAL_EXPOSURE_PLAYBOOK-v0.1-8A2BE2" alt="LEGAL_EXPOSURE_PLAYBOOK v0.1"/></a>
+  <a href="#"><img src="https://img.shields.io/badge/DIFC-Dubai-00A3E0" alt="DIFC Dubai"/></a>
+</p>
+
+
 > ⚠️ **This repository has been superseded.** The updated open-core community edition is at **[Wolfgangrush/ai-brain-dubai](https://github.com/Wolfgangrush/ai-brain-dubai)**. This repo is kept public to preserve existing links.
 
 # 🇦🇪 AI Law Firm — Dubai-DIFC · Solo Edition
